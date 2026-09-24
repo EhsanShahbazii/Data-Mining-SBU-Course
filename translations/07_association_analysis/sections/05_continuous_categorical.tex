@@ -1,0 +1,93 @@
+\section{مدیریت ویژگی‌های پیوسته و دسته‌ای}
+
+% Slide 37
+\begin{frame}{مدیریت ویژگی‌های پیوسته و دسته‌ای}{\lr{Handling Continuous and Categorical Attributes}}
+\begin{itemize}\setlength{\itemsep}{5pt}
+    \item چگونه تحلیل وابستگی را بر روی ویژگی‌هایی اعمال کنیم که \textbf{متغیرهای دوگانهٔ نامتقارن نیستند}؟
+    \item \textbf{مثال قاعدهٔ ترکیبی:}
+    \begin{center}
+    \begin{latin}
+    \[
+    \{\text{Number of Pages} \in [5,10) \wedge (\text{Browser}=\text{Firefox})\} \to \{\text{Buy} = \text{No}\}
+    \]
+    \end{latin}
+    \end{center}
+\end{itemize}
+
+\vspace{0.1cm}
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\fontsize{7.5}{9.5}\selectfont
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\rowcolor{mannheimblue!15}
+\textbf{شناسه} & \textbf{کشور} & \textbf{مدت جلسه (ثانیه)} & \textbf{صفحات دیده‌شده} & \textbf{جنسیت} & \textbf{مرورگر} & \textbf{خرید} \\ \hline
+1 & USA & 982 & 8 & Male & Chrome & No \\ \hline
+2 & China & 811 & 10 & Female & Chrome & No \\ \hline
+3 & USA & 2125 & 45 & Female & Firefox & Yes \\ \hline
+4 & Germany & 596 & 4 & Male & IE & Yes \\ \hline
+5 & Australia & 123 & 9 & Male & Firefox & No \\ \hline
+\dots & \dots & \dots & \dots & \dots & \dots & \dots \\ \hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+% Slide 38
+\begin{frame}{مدیریت ویژگی‌های دسته‌ای}{\lr{Handling Categorical Attributes}}
+\begin{itemize}\setlength{\itemsep}{4pt}
+    \item \textbf{تبدیل ویژگی‌های دسته‌ای به متغیرهای دودویی نامتقارن:}
+    \begin{itemize}\setlength{\itemsep}{2pt}
+        \item تعریف یک «آیتم» جدید به‌ازای هر جفت مشخص (ویژگی، مقدار).
+        \item برای مثال، جایگزینی ویژگی «نوع مرورگر» با:
+        \begin{itemize}\footnotesize
+            \item ویژگی: $\text{Browser Type} = \text{Chrome}$
+            \item ویژگی: $\text{Browser Type} = \text{Firefox}$
+            \item ویژگی: $\text{Browser Type} = \text{Safari}$ و \dots
+        \end{itemize}
+    \end{itemize}
+    \vspace{0.15cm}
+    \item \textbf{چالش‌های پیش‌رو:}
+    \begin{itemize}\setlength{\itemsep}{3pt}
+        \item \alert{\textbf{اگر ویژگی دارای مقادیر ممکن بسیار زیادی باشد:}}
+        \begin{itemize}\footnotesize
+            \item بسیاری از مقادیر ویژگی ممکن است دارای پشتیبان بسیار پایینی باشند.
+            \item \textbf{راهکار احتمالی:} تجمیع مقادیر کم‌پشتیبان در گروه‌های کلی‌تر.
+        \end{itemize}
+        \item \alert{\textbf{اگر توزیع مقادیر ویژگی دارای چولگی شدید باشد:}}
+        \begin{itemize}\footnotesize
+            \item برای مثال: \lr{95\%} کاربران دارای $\text{Buy} = \text{No}$ هستند.
+            \item اغلب آیتم‌ها با $(\text{Buy}=\text{No})$ همبسته خواهند شد (قواعد بدیهی).
+            \item \textbf{راهکار احتمالی:} حذف یا نادیده گرفتن آیتم بسیار پرتکرار.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+% Slide 39
+\begin{frame}{مدیریت ویژگی‌های پیوسته}{\lr{Handling Continuous Attributes}}
+\begin{itemize}\setlength{\itemsep}{4pt}
+    \item \textbf{تبدیل متغیرهای پیوسته با گسسته‌سازی:} \lr{(Discretization)}
+    \begin{itemize}\setlength{\itemsep}{2pt}
+        \item دسته‌بندی با پهنای مساوی \lr{(Equal-width binning)}
+        \item دسته‌بندی با بسامد مساوی \lr{(Equal-frequency binning)}
+    \end{itemize}
+    \vspace{0.15cm}
+    \item \textbf{چالش:} طول بازه‌های گسسته‌سازی مستقیماً بر روی پشتیبان و اطمینان اثر می‌گذارد:
+    \begin{latin}
+    \begin{itemize}\small\setlength{\itemsep}{1pt}
+        \item $\{\text{Refund}=\text{No}, (\text{Income}=\$51{,}251)\} \to \{\text{Cheat}=\text{No}\}$
+        \item $\{\text{Refund}=\text{No}, (60\text{K} \le \text{Income} \le 80\text{K})\} \to \{\text{Cheat}=\text{No}\}$
+        \item $\{\text{Refund}=\text{No}, (0\text{K} \le \text{Income} \le 1\text{B})\} \to \{\text{Cheat}=\text{No}\}$
+    \end{itemize}
+    \end{latin}
+    \vspace{0.15cm}
+    \item \textbf{اگر بازه‌ها بیش از حد کوچک باشند:}
+    \begin{itemize}\footnotesize
+        \item مجموعه‌آیتم‌ها پشتیبان کافی کسب نمی‌کنند و نادیده گرفته می‌شوند.
+    \end{itemize}
+    \item \textbf{اگر بازه‌ها بیش از حد بزرگ باشند:}
+    \begin{itemize}\footnotesize
+        \item قواعد اطمینان کافی یا معنای عملی نخواهند داشت.
+    \end{itemize}
+\end{itemize}
+\end{frame}
