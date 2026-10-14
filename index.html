@@ -26,19 +26,17 @@
       </button>
 
       <a href="#" class="brand">
-        <span style="font-size: 1.4rem;">📊</span>
-        <span id="brand-title">داده‌کاوی (IE500)</span>
-        <span class="brand-badge" id="brand-badge">دانشگاه مانهایم</span>
+        <span id="brand-title">داده‌کاوی</span>
       </a>
     </div>
 
     <div class="header-right">
-      <div class="search-box">
+      <div class="search-box desktop-only">
         <span class="search-icon">🔍</span>
         <input type="text" id="search-input" placeholder="جستجوی فصل یا موضوع...">
       </div>
 
-      <button class="lang-switch" id="lang-toggle-btn" aria-label="Switch Language">
+      <button class="lang-switch desktop-only" id="lang-toggle-btn" aria-label="Switch Language">
         <span>🌐</span>
         <span id="lang-label">English</span>
       </button>
@@ -56,8 +54,29 @@
   <!-- Container -->
   <div class="app-container">
 
+    <!-- Backdrop for mobile drawer -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
     <!-- Sidebar Documentation Navigation -->
     <aside class="sidebar" id="sidebar">
+      <div class="drawer-header mobile-only">
+        <span class="drawer-title" id="drawer-title">فهرست و دسترسی</span>
+        <button class="btn-icon" id="drawer-close-btn" aria-label="Close menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="drawer-actions mobile-only" style="margin-bottom: 0.75rem;">
+        <button class="drawer-lang-btn" id="drawer-lang-toggle-btn" type="button">
+          <span>🌐</span>
+          <span id="drawer-lang-label">English</span>
+        </button>
+      </div>
+
+      <div class="drawer-search mobile-only">
+        <input type="text" id="drawer-search-input" placeholder="جستجوی فصل یا موضوع...">
+      </div>
+
       <div class="sidebar-title" id="sidebar-heading">فهرست فصول</div>
       <ul class="nav-list" id="chapters-nav-list">
         <!-- Rendered by JS -->

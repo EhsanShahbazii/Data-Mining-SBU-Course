@@ -137,10 +137,11 @@ const chaptersData = [
 
 const uiStrings = {
   fa: {
-    siteTitle: "داده‌کاوی (IE500)",
-    siteBadge: "دانشگاه مانهایم",
+    siteTitle: "داده‌کاوی",
+    siteBadge: "",
     searchPlaceholder: "جستجوی فصل یا موضوع...",
     navHeader: "فهرست فصول",
+    drawerTitle: "فهرست و دسترسی",
     navBook: "کتاب مرجع",
     heroTag: "مرجع آموزشی دانشگاه مانهایم آلمان",
     heroTitle: "اسلایدهای جامع درس داده‌کاوی (IE500)",
@@ -164,10 +165,11 @@ const uiStrings = {
     downloadModal: "دانلود فایل"
   },
   en: {
-    siteTitle: "Data Mining (IE500)",
-    siteBadge: "Uni Mannheim",
+    siteTitle: "Data Mining",
+    siteBadge: "",
     searchPlaceholder: "Search chapter or topic...",
     navHeader: "Course Chapters",
+    drawerTitle: "Navigation Menu",
     navBook: "Reference Book",
     heroTag: "University of Mannheim Lecture Materials",
     heroTitle: "Data Mining Course Slides & Persian Translations",
@@ -204,8 +206,33 @@ function initApp() {
 
   // Setup Event Listeners
   document.getElementById('lang-toggle-btn').addEventListener('click', toggleLanguage);
+  
+  const drawerLangBtn = document.getElementById('drawer-lang-toggle-btn');
+  if (drawerLangBtn) {
+    drawerLangBtn.addEventListener('click', toggleLanguage);
+  }
+
+  const drawerCloseBtn = document.getElementById('drawer-close-btn');
+  if (drawerCloseBtn) {
+    drawerCloseBtn.addEventListener('click', closeMobileMenu);
+  }
+
+  const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+  if (sidebarBackdrop) {
+    sidebarBackdrop.addEventListener('click', closeMobileMenu);
+  }
+
   document.getElementById('theme-toggle-btn').addEventListener('click', toggleTheme);
   document.getElementById('search-input').addEventListener('input', handleSearch);
+
+  const drawerSearchInput = document.getElementById('drawer-search-input');
+  if (drawerSearchInput) {
+    drawerSearchInput.addEventListener('input', (e) => {
+      document.getElementById('search-input').value = e.target.value;
+      handleSearch(e);
+    });
+  }
+
   document.getElementById('menu-toggle-btn').addEventListener('click', toggleMobileMenu);
 
   // Modal handlers
@@ -256,6 +283,10 @@ function setLanguage(lang) {
   document.body.classList.toggle('lang-en', isEn);
   
   document.getElementById('lang-label').textContent = isEn ? 'فارسی' : 'English';
+  const drawerLang = document.getElementById('drawer-lang-label');
+  if (drawerLang) {
+    drawerLang.textContent = isEn ? 'فارسی' : 'English';
+  }
   
   applyStaticTranslations(lang);
   renderNavigation(lang);
@@ -265,9 +296,21 @@ function setLanguage(lang) {
 
 function applyStaticTranslations(lang) {
   const t = uiStrings[lang];
-  document.getElementById('brand-title').textContent = t.siteTitle;
-  document.getElementById('brand-badge').textContent = t.siteBadge;
-  document.getElementById('search-input').placeholder = t.searchPlaceholder;
+  const brandTitle = document.getElementById('brand-title');
+  if (brandTitle) brandTitle.textContent = t.siteTitle;
+
+  const brandBadge = document.getElementById('brand-badge');
+  if (brandBadge) brandBadge.textContent = t.siteBadge;
+
+  const searchInput = document.getElementById('search-input');
+  if (searchInput) searchInput.placeholder = t.searchPlaceholder;
+
+  const drawerSearch = document.getElementById('drawer-search-input');
+  if (drawerSearch) drawerSearch.placeholder = t.searchPlaceholder;
+
+  const drawerTitle = document.getElementById('drawer-title');
+  if (drawerTitle) drawerTitle.textContent = t.drawerTitle;
+
   document.getElementById('sidebar-heading').textContent = t.navHeader;
   document.getElementById('nav-book-text').textContent = t.navBook;
   
@@ -307,12 +350,16 @@ function renderNavigation(lang) {
     a.addEventListener('click', () => {
       document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
       a.classList.add('active');
-      // close mobile sidebar if open
-      document.getElementById('sidebar').classList.remove('mobile-open');
+      closeMobileMenu();
     });
     li.appendChild(a);
     navList.appendChild(li);
   });
+
+  const refBookLink = document.querySelector('a[href="#reference-book"]');
+  if (refBookLink) {
+    refBookLink.addEventListener('click', closeMobileMenu);
+  }
 }
 
 function renderChapterCards(lang, filterQuery = "") {
@@ -349,21 +396,25 @@ function renderChapterCards(lang, filterQuery = "") {
       <div class="card-actions">
         <div class="action-row">
           <span class="action-group-title">${lang === 'fa' ? 'نسخه فارسی' : 'Persian (FA)'}</span>
-          <button class="btn btn-primary" onclick="openPdfModal('${ch.faPdf}', '${data.title} (${lang === 'fa' ? 'فارسی' : 'Persian'})')">
-            <span>👁️</span> ${t.readOnlineFa}
-          </button>
-          <a class="btn btn-secondary btn-sm" href="${ch.faPdf}" download>
-            <span>⬇️</span> ${t.downloadFa}
-          </a>
+          <div class="action-row-buttons">
+            <button class="btn btn-primary" onclick="openPdfModal('${ch.faPdf}', '${data.title} (${lang === 'fa' ? 'فارسی' : 'Persian'})')">
+              <span>👁️</span> ${t.readOnlineFa}
+            </button>
+            <a class="btn btn-secondary btn-sm" href="${ch.faPdf}" download>
+              <span>⬇️</span> ${t.downloadFa}
+            </a>
+          </div>
         </div>
         <div class="action-row">
           <span class="action-group-title">${lang === 'fa' ? 'نسخه اصلی (English)' : 'Original (EN)'}</span>
-          <button class="btn btn-secondary" onclick="openPdfModal('${ch.enPdf}', '${data.enTitle} (English)')">
-            <span>👁️</span> ${t.readOnlineEn}
-          </button>
-          <a class="btn btn-secondary btn-sm" href="${ch.enPdf}" download>
-            <span>⬇️</span> ${t.downloadEn}
-          </a>
+          <div class="action-row-buttons">
+            <button class="btn btn-secondary" onclick="openPdfModal('${ch.enPdf}', '${data.enTitle} (English)')">
+              <span>👁️</span> ${t.readOnlineEn}
+            </button>
+            <a class="btn btn-secondary btn-sm" href="${ch.enPdf}" download>
+              <span>⬇️</span> ${t.downloadEn}
+            </a>
+          </div>
         </div>
       </div>
     `;
@@ -377,7 +428,18 @@ function handleSearch(e) {
 }
 
 function toggleMobileMenu() {
-  document.getElementById('sidebar').classList.toggle('mobile-open');
+  const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('sidebar-backdrop');
+  if (!sidebar) return;
+  const isOpen = sidebar.classList.toggle('mobile-open');
+  if (backdrop) backdrop.classList.toggle('active', isOpen);
+}
+
+function closeMobileMenu() {
+  const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('sidebar-backdrop');
+  if (sidebar) sidebar.classList.remove('mobile-open');
+  if (backdrop) backdrop.classList.remove('active');
 }
 
 function openPdfModal(pdfUrl, title) {
