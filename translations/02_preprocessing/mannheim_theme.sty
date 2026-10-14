@@ -1,0 +1,66 @@
+\ProvidesPackage{mannheim_theme}
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+
+% Colors
+\definecolor{mannheimblue}{RGB}{0, 48, 86}
+\definecolor{mannheimteal}{RGB}{80, 130, 127}
+\definecolor{darktext}{RGB}{35, 35, 35}
+\definecolor{subgray}{RGB}{115, 115, 115}
+\definecolor{codebg}{RGB}{242, 244, 248}
+\definecolor{codeborder}{RGB}{215, 220, 228}
+
+\newcommand{\codebox}[1]{\lr{\fcolorbox{codeborder}{codebg}{\ttfamily\small #1}}}
+\newcommand{\codeinline}[1]{\lr{\colorbox{codebg}{\ttfamily\small #1}}}
+
+% Slide layout settings
+\setbeamersize{text margin left=0.7cm,text margin right=0.7cm}
+\setbeamertemplate{navigation symbols}{}
+
+% Color assignments
+\setbeamercolor{normal text}{fg=darktext}
+\setbeamercolor{structure}{fg=mannheimblue}
+
+% Header with Logo and Titles
+\setbeamertemplate{headline}{%
+  \ifnum\thepage>1%
+  \leavevmode%
+  \vspace*{0.22cm}%
+  \hfill%
+  \includegraphics[height=0.82cm]{images/mannheim_logo.png}%
+  \hspace*{0.7cm}%
+  \fi%
+}
+
+\setbeamertemplate{frametitle}{%
+  \vspace*{-0.85cm}%
+  {\fontsize{7.5}{9}\selectfont\color{subgray}گروه علوم داده و وب}\\[2.5pt]%
+  {\fontsize{15}{19}\selectfont\color{mannheimblue}\textbf{\insertframetitle}}%
+  \ifx\insertframesubtitle\@empty\else%
+    \\[1.5pt]{\fontsize{9}{11}\selectfont\color{subgray}\insertframesubtitle}%
+  \fi%
+  \vspace{0.25cm}%
+}
+
+% Footline template
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=3ex,dp=1.5ex,leftskip=0.7cm,rightskip=0.7cm]{footline}%
+    {\fontsize{6.8}{8}\selectfont\color{subgray}دانشگاه مانهایم \ | \ \lr{IE500} داده‌کاوی \ | \ پیش‌پردازش داده‌ها \ | \ نسخه \lr{28.10.2024}}%
+    \hfill%
+    {\fontsize{7.5}{9}\selectfont\color{subgray}\insertframenumber}%
+  \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+
+% Bullet configuration hook after xepersian
+\newcommand{\setupmannheimbullets}{%
+  \setbeamertemplate{itemize items}[circle]%
+  \setbeamertemplate{itemize item}{\raisebox{0.1ex}{\color{mannheimblue}\small$\bullet$}}%
+  \setbeamertemplate{itemize subitem}{\raisebox{0.2ex}{\color{mannheimblue}\small--}}%
+  \setbeamertemplate{itemize subsubitem}{\raisebox{0.2ex}{\color{mannheimblue}\tiny$\bullet$}}%
+}
