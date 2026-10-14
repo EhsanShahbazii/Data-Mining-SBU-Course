@@ -28,7 +28,13 @@
 - پکیج زبان فارسی: `XePersian` و `bidi`
 - فونت‌های اصلی: وزیرمتن (`Vazirmatn`) و فونت‌های استاندارد سریف
 
-برای کامپایل هر فصل:
+برای کامپایل سریع تمام فصول:
+```bash
+chmod +x compile_all.sh
+./compile_all.sh
+```
+
+یا برای کامپایل هر فصل به صورت مجزا:
 ```bash
 cd translations/<chapter_directory>
 xelatex -output-directory=output main.tex
