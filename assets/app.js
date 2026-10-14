@@ -147,17 +147,16 @@ const uiStrings = {
     heroTitle: "اسلایدهای جامع درس داده‌کاوی (IE500)",
     heroSubtitle: "اسلایدهای کامل درس داده‌کاوی همراه با ترجمه تخصصی، تایپ‌ست استاندارد لاتک و پکیج زی‌پرشین، دسترسی همزمان به نسخه اصلی و ترجمه فارسی.",
     slidesTitle: "فصل‌های آموزشی",
-    slidesSubtitle: "۷ فصل کامل همراه با امکان مطالعه آنلاین و دانلود مستقیم فایل‌های PDF",
+    slidesSubtitle: "۷ فصل کامل - کلیک روی هر کارت برای پیش‌نمایش آنلاین اسلایدها",
     slidesWord: "اسلاید",
-    readOnlineFa: "مشاهده ترجمه فارسی",
-    downloadFa: "دانلود نسخه فارسی",
-    readOnlineEn: "مشاهده اسلاید اصلی",
-    downloadEn: "دانلود اسلاید اصلی",
+    clickToPreview: "پیش‌نمایش",
+    downloadFa: "دانلود ترجمه",
+    downloadEn: "دانلود اصلی",
     bookTitle: "کتاب مرجع: مقدمه‌ای بر داده‌کاوی (ویرایش دوم)",
     bookAuthors: "نویسندگان: پنگ-نینگ تن، مایکل استاین‌بک، آنوج کارپاتنه، ویپین کومار",
     bookDesc: "کتاب اصلی دانشگاهی مورد تدریس در دانشگاه‌های برتر جهان برای مباحث داده‌کاوی، یادگیری ماشین و تحلیل داده.",
     readBook: "مشاهده آنلاین کتاب",
-    downloadBook: "دانلود نسخه PDF کتاب",
+    downloadBook: "دانلود کتاب مرجع",
     footerText: "طراحی و توسعه برای جامعه علمی و دانشجویان مهندسی کامپیوتر و هوش مصنوعی",
     footerAuthor: "مترجم و گردآورنده: احسان شهبازی",
     closeModal: "بستن",
@@ -175,17 +174,16 @@ const uiStrings = {
     heroTitle: "Data Mining Course Slides & Persian Translations",
     heroSubtitle: "Complete lecture slides from the University of Mannheim Data Mining course, paired with professional Persian translations formatted with XeLaTeX.",
     slidesTitle: "Lecture Chapters",
-    slidesSubtitle: "All 7 course decks available for online reading and direct PDF download in both languages.",
+    slidesSubtitle: "All 7 course decks - Click on any card to preview slides",
     slidesWord: "Slides",
-    readOnlineFa: "Read Persian Slides",
-    downloadFa: "Download Persian PDF",
-    readOnlineEn: "Read Original English",
-    downloadEn: "Download English PDF",
+    clickToPreview: "Preview",
+    downloadFa: "Download Translation",
+    downloadEn: "Download Original",
     bookTitle: "Textbook: Introduction to Data Mining (2nd Ed)",
     bookAuthors: "Authors: Pang-Ning Tan, Michael Steinbach, Anuj Karpatne, Vipin Kumar",
     bookDesc: "The premier reference textbook covering core algorithmic and conceptual foundations of data mining and machine learning.",
     readBook: "Read Book Online",
-    downloadBook: "Download Book PDF",
+    downloadBook: "Download Textbook",
     footerText: "Open educational resource for data science and AI students worldwide",
     footerAuthor: "Translated & Curated by: Ehsan Shahbazi",
     closeModal: "Close",
@@ -380,12 +378,21 @@ function renderChapterCards(lang, filterQuery = "") {
     const card = document.createElement('article');
     card.className = 'chapter-card';
     card.id = ch.id;
+    card.title = lang === 'fa' ? 'برای پیش‌نمایش کلیک کنید' : 'Click to preview';
+
+    // Click on card previews the Persian translation
+    card.addEventListener('click', () => {
+      openPdfModal(ch.faPdf, `${data.title} (${lang === 'fa' ? 'ترجمه فارسی' : 'Persian Translation'})`);
+    });
 
     const topicsHtml = data.topics.map(tp => `<span class="topic-pill">${tp}</span>`).join('');
 
     card.innerHTML = `
       <div class="card-top">
-        <span class="ch-number">${lang === 'fa' ? `فصل ${ch.num}` : `Chapter ${ch.num}`}</span>
+        <div class="card-top-badges">
+          <span class="ch-number">${lang === 'fa' ? `فصل ${ch.num}` : `Chapter ${ch.num}`}</span>
+          <span class="preview-badge">👁️ ${t.clickToPreview}</span>
+        </div>
         <span class="slide-count">📑 ${ch.slidesCount} ${t.slidesWord}</span>
       </div>
       <h3 class="card-title">${data.title}</h3>
@@ -394,28 +401,12 @@ function renderChapterCards(lang, filterQuery = "") {
       <div class="topics-wrap">${topicsHtml}</div>
       
       <div class="card-actions">
-        <div class="action-row">
-          <span class="action-group-title">${lang === 'fa' ? 'نسخه فارسی' : 'Persian (FA)'}</span>
-          <div class="action-row-buttons">
-            <button class="btn btn-primary" onclick="openPdfModal('${ch.faPdf}', '${data.title} (${lang === 'fa' ? 'فارسی' : 'Persian'})')">
-              <span>👁️</span> ${t.readOnlineFa}
-            </button>
-            <a class="btn btn-secondary btn-sm" href="${ch.faPdf}" download>
-              <span>⬇️</span> ${t.downloadFa}
-            </a>
-          </div>
-        </div>
-        <div class="action-row">
-          <span class="action-group-title">${lang === 'fa' ? 'نسخه اصلی (English)' : 'Original (EN)'}</span>
-          <div class="action-row-buttons">
-            <button class="btn btn-secondary" onclick="openPdfModal('${ch.enPdf}', '${data.enTitle} (English)')">
-              <span>👁️</span> ${t.readOnlineEn}
-            </button>
-            <a class="btn btn-secondary btn-sm" href="${ch.enPdf}" download>
-              <span>⬇️</span> ${t.downloadEn}
-            </a>
-          </div>
-        </div>
+        <a class="btn btn-primary" href="${ch.faPdf}" download onclick="event.stopPropagation()" title="${t.downloadFa}">
+          <span>⬇️</span> ${t.downloadFa}
+        </a>
+        <a class="btn btn-secondary" href="${ch.enPdf}" download onclick="event.stopPropagation()" title="${t.downloadEn}">
+          <span>⬇️</span> ${t.downloadEn}
+        </a>
       </div>
     `;
 

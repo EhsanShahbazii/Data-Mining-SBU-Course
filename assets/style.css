@@ -430,11 +430,13 @@ button {
   transition: var(--transition);
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+  position: relative;
 }
 
 .chapter-card:hover {
   box-shadow: var(--shadow-md);
-  border-color: var(--primary-border);
+  border-color: var(--primary);
   transform: translateY(-2px);
 }
 
@@ -500,32 +502,37 @@ button {
   border: 1px solid var(--border-color);
 }
 
-.card-actions {
+.card-top-badges {
   display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  margin-top: auto;
-  padding-top: 0.75rem;
-  border-top: 1px dashed var(--border-color);
-}
-
-.action-row {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.action-row-buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  align-items: center;
   gap: 0.4rem;
 }
 
-.action-group-title {
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--text-light);
+.preview-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--accent);
+  background-color: var(--accent-light);
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: var(--transition);
+}
+
+.chapter-card:hover .preview-badge {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+.card-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-color);
 }
 
 /* Buttons */
@@ -911,11 +918,20 @@ dialog#pdf-modal::backdrop {
     padding: 0.85rem;
   }
 
-  .action-row-buttons {
-    grid-template-columns: 1fr;
+  .card-actions {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
   }
 
   .btn {
-    min-height: 42px;
+    min-height: 40px;
+    font-size: 0.78rem;
+    padding: 0.4rem 0.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .card-actions {
+    grid-template-columns: 1fr;
   }
 }
