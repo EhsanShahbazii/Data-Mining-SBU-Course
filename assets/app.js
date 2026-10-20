@@ -17,7 +17,11 @@ const chaptersData = [
       topics: ["KDD Definition", "Predictive Tasks", "Descriptive Tasks", "Big Data"]
     },
     faPdf: "Translated_Slides/01_Introduction_FA.pdf",
-    enPdf: "Slides/IE500_DM_01_Introduction.pdf"
+    enPdf: "Slides/IE500_DM_01_Introduction.pdf",
+    readingPdf: "Textbook_Readings/01_Introduction_Textbook_Reading.pdf",
+    readingPages: 20,
+    faReadingDesc: "فصل ۱ (ص ۲۲-۳۵) + بخش ۶.۳ (ص ۴۱۱-۴۱۵) • تعریف KDD، وظایف پیش‌بینانه/توصیفی و الگوریتم طبقه‌بندی KNN",
+    enReadingDesc: "Chapter 1 (pp. 22-35) + Sec 6.3 (pp. 411-415) • KDD definition, predictive/descriptive tasks, and KNN classifier"
   },
   {
     id: "ch02",
@@ -36,7 +40,11 @@ const chaptersData = [
       topics: ["Attribute Types", "Data Quality", "Dimensionality Reduction", "Sampling", "PCA"]
     },
     faPdf: "Translated_Slides/02_Preprocessing_FA.pdf",
-    enPdf: "Slides/IE500_DM_02_Preprocessing.pdf"
+    enPdf: "Slides/IE500_DM_02_Preprocessing.pdf",
+    readingPdf: "Textbook_Readings/02_Preprocessing_Textbook_Reading.pdf",
+    readingPages: 96,
+    faReadingDesc: "فصل ۲ (ص ۴۴-۱۲۰) + بخش ۶.۱۱ (ص ۵۱۶-۵۳۳) • انواع صفت‌ها، کیفیت داده، کاهش ابعاد PCA، شباهت و تکنیک SMOTE",
+    enReadingDesc: "Chapter 2 (pp. 44-120) + Sec 6.11 (pp. 516-533) • Data types, data quality, PCA, similarity metrics, and class imbalance (SMOTE)"
   },
   {
     id: "ch03",
@@ -55,7 +63,11 @@ const chaptersData = [
       topics: ["Decision Trees", "Gini Index", "Entropy", "Tree Pruning", "Model Evaluation"]
     },
     faPdf: "Translated_Slides/03_Classification_Part1_FA.pdf",
-    enPdf: "Slides/IE500_DM_03_Classification_Part1.pdf"
+    enPdf: "Slides/IE500_DM_03_Classification_Part1.pdf",
+    readingPdf: "Textbook_Readings/03_Classification_Part1_Textbook_Reading.pdf",
+    readingPages: 74,
+    faReadingDesc: "بخش‌های ۳.۱-۳.۴ + ۶.۱۰ + ۶.۱۱.۲-۶.۱۱.۴ • الگوریتم هانت، ناخالصی گینی/آنتروپی، بیش‌برازش، Random Forest و منحنی ROC",
+    enReadingDesc: "Sections 3.1-3.4 + 6.10 + 6.11.2-6.11.4 • Hunt's algorithm, Gini/Entropy, overfitting, Random Forests, and ROC curves"
   },
   {
     id: "ch04",
@@ -74,7 +86,11 @@ const chaptersData = [
       topics: ["Naive Bayes", "SVM", "Perceptron", "Transformers", "LLMs"]
     },
     faPdf: "Translated_Slides/04_Classification_Part2_FA.pdf",
-    enPdf: "Slides/IE500_DM_04_Classification_Part2.pdf"
+    enPdf: "Slides/IE500_DM_04_Classification_Part2.pdf",
+    readingPdf: "Textbook_Readings/04_Classification_Part2_Textbook_Reading.pdf",
+    readingPages: 76,
+    faReadingDesc: "بخش‌های ۶.۴ + ۶.۷-۶.۹ + ۳.۵ + ۳.۷ • بیز ساده، شبکه‌های عصبی ANN، یادگیری عمیق، SVM غیرخطی و اعتبارسنجی Nested CV",
+    enReadingDesc: "Sections 6.4 + 6.7-6.9 + 3.5 + 3.7 • Naive Bayes, ANNs, Deep Learning, non-linear SVMs, and Nested Cross-Validation"
   },
   {
     id: "ch05",
@@ -93,7 +109,11 @@ const chaptersData = [
       topics: ["Linear Regression", "Gradient Descent", "Ridge/Lasso", "Evaluation Metrics"]
     },
     faPdf: "Translated_Slides/05_Regression_FA.pdf",
-    enPdf: "Slides/IE500_DM_05_Regression.pdf"
+    enPdf: "Slides/IE500_DM_05_Regression.pdf",
+    readingPdf: "Textbook_Readings/05_Regression_Textbook_Reading.pdf",
+    readingPages: 29,
+    faReadingDesc: "بخش‌های ۶.۶ + ۶.۱۰.۳ + ۳.۴ + ۶.۳ + ۹.۳.۴ • مبانی مدل‌های تعمیم‌یافته خطی (GLM)، تجزیه موازنه Bias/Variance و منظم‌سازی",
+    enReadingDesc: "Sections 6.6 + 6.10.3 + 3.4 + 6.3 + 9.3.4 • Generalized Linear Models (GLM), Bias-Variance decomposition, and regularization"
   },
   {
     id: "ch06",
@@ -112,7 +132,11 @@ const chaptersData = [
       topics: ["K-means", "Hierarchical Clustering", "DBSCAN", "Silhouette Score"]
     },
     faPdf: "Translated_Slides/06_Clustering_FA.pdf",
-    enPdf: "Slides/IE500_DM_06_Clustering.pdf"
+    enPdf: "Slides/IE500_DM_06_Clustering.pdf",
+    readingPdf: "Textbook_Readings/06_Clustering_Textbook_Reading.pdf",
+    readingPages: 110,
+    faReadingDesc: "فصل ۵ (ص ۳۰۸-۳۷۹) + بخش ۲.۴ + فصل ۹ (ص ۷۲۴-۷۴۸) • الگوریتم‌های K-Means، سلسله‌مراتبی، DBSCAN، ارزیابی Silhouette و تشخیص داده‌های پرت (LOF)",
+    enReadingDesc: "Chapter 5 (pp. 308-379) + Sec 2.4 + Chapter 9 (pp. 724-748) • K-Means, hierarchical clustering, DBSCAN, Silhouette evaluation, and Anomaly Detection (LOF)"
   },
   {
     id: "ch07",
@@ -131,7 +155,11 @@ const chaptersData = [
       topics: ["Association Rules", "Apriori Algorithm", "FP-Tree", "Lift Metric"]
     },
     faPdf: "Translated_Slides/07_Association_Analysis_FA.pdf",
-    enPdf: "Slides/IE500_DM_07_Association_Analysis.pdf"
+    enPdf: "Slides/IE500_DM_07_Association_Analysis.pdf",
+    readingPdf: "Textbook_Readings/07_Association_Analysis_Textbook_Reading.pdf",
+    readingPages: 63,
+    faReadingDesc: "فصل ۴ (ص ۲۱۴-۲۴۵، ۲۵۸-۲۷۴) + فصل ۷ (ص ۵۶۰-۵۷۲) • الگوریتم آپریوری، هرس کاندیدها، تولید قواعد، معیار Lift و صفات پیوسته",
+    enReadingDesc: "Chapter 4 (pp. 214-245, 258-274) + Chapter 7 (pp. 560-572) • Apriori principle, candidate pruning, rule generation, Lift metric, and continuous attributes"
   }
 ];
 
@@ -143,6 +171,7 @@ const uiStrings = {
     navHeader: "فهرست فصول",
     drawerTitle: "فهرست و دسترسی",
     navBook: "کتاب مرجع",
+    navReadings: "صفحات برگزیده کتاب",
     heroTag: "مرجع آموزشی دانشگاه مانهایم آلمان",
     heroTitle: "اسلایدهای جامع درس داده‌کاوی (IE500)",
     heroSubtitle: "اسلایدهای کامل درس داده‌کاوی همراه با ترجمه تخصصی، تایپ‌ست استاندارد لاتک و پکیج زی‌پرشین، دسترسی همزمان به نسخه اصلی و ترجمه فارسی.",
@@ -152,6 +181,11 @@ const uiStrings = {
     clickToPreview: "پیش‌نمایش",
     downloadFa: "دانلود ترجمه",
     downloadEn: "دانلود اصلی",
+    readingsTitle: "صفحات برگزیده کتاب مرجع (مطابق سرفصل‌های اسلاید)",
+    readingsSubtitle: "بخش‌های استخراج‌شده از کتاب مرجع پنگ-نینگ تن و همکاران، همراه با فهرست کلیک‌پذیر و بدون مباحث نامربوط جهت مطالعه هدفمند دانشجویان.",
+    readOnline: "مشاهده آنلاین",
+    downloadPdf: "دانلود PDF",
+    pagesWord: "صفحه",
     bookTitle: "کتاب مرجع: مقدمه‌ای بر داده‌کاوی (ویرایش دوم)",
     bookAuthors: "نویسندگان: پنگ-نینگ تن، مایکل استاین‌بک، آنوج کارپاتنه، ویپین کومار",
     bookDesc: "کتاب اصلی دانشگاهی مورد تدریس در دانشگاه‌های برتر جهان برای مباحث داده‌کاوی، یادگیری ماشین و تحلیل داده.",
@@ -170,6 +204,7 @@ const uiStrings = {
     navHeader: "Course Chapters",
     drawerTitle: "Navigation Menu",
     navBook: "Reference Book",
+    navReadings: "Curated Readings",
     heroTag: "University of Mannheim Lecture Materials",
     heroTitle: "Data Mining Course Slides & Persian Translations",
     heroSubtitle: "Complete lecture slides from the University of Mannheim Data Mining course, paired with professional Persian translations formatted with XeLaTeX.",
@@ -179,6 +214,11 @@ const uiStrings = {
     clickToPreview: "Preview",
     downloadFa: "Download Translation",
     downloadEn: "Download Original",
+    readingsTitle: "Curated Textbook Readings (Matching Lecture Decks)",
+    readingsSubtitle: "Core sections extracted directly from Tan et al. reference textbook, complete with bookmarks and structured for focused student study.",
+    readOnline: "Read Online",
+    downloadPdf: "Download PDF",
+    pagesWord: "pages",
     bookTitle: "Textbook: Introduction to Data Mining (2nd Ed)",
     bookAuthors: "Authors: Pang-Ning Tan, Michael Steinbach, Anuj Karpatne, Vipin Kumar",
     bookDesc: "The premier reference textbook covering core algorithmic and conceptual foundations of data mining and machine learning.",
@@ -289,6 +329,7 @@ function setLanguage(lang) {
   applyStaticTranslations(lang);
   renderNavigation(lang);
   renderChapterCards(lang);
+  renderReadings(lang);
   updateThemeIcon();
 }
 
@@ -311,6 +352,8 @@ function applyStaticTranslations(lang) {
 
   document.getElementById('sidebar-heading').textContent = t.navHeader;
   document.getElementById('nav-book-text').textContent = t.navBook;
+  const navReadings = document.getElementById('nav-readings-text');
+  if (navReadings) navReadings.textContent = t.navReadings;
   
   document.getElementById('hero-tag').textContent = t.heroTag;
   document.getElementById('hero-title').textContent = t.heroTitle;
@@ -318,6 +361,11 @@ function applyStaticTranslations(lang) {
 
   document.getElementById('section-title-text').textContent = t.slidesTitle;
   document.getElementById('section-desc-text').textContent = t.slidesSubtitle;
+
+  const readingsTitle = document.getElementById('readings-title');
+  if (readingsTitle) readingsTitle.textContent = t.readingsTitle;
+  const readingsSub = document.getElementById('readings-subtitle');
+  if (readingsSub) readingsSub.textContent = t.readingsSubtitle;
 
   document.getElementById('book-title').textContent = t.bookTitle;
   document.getElementById('book-authors').textContent = t.bookAuthors;
@@ -358,6 +406,43 @@ function renderNavigation(lang) {
   if (refBookLink) {
     refBookLink.addEventListener('click', closeMobileMenu);
   }
+
+  const readingsLink = document.querySelector('a[href="#readings-section"]');
+  if (readingsLink) {
+    readingsLink.addEventListener('click', closeMobileMenu);
+  }
+}
+
+function renderReadings(lang) {
+  const container = document.getElementById('readings-grid');
+  if (!container) return;
+  container.innerHTML = '';
+  const t = uiStrings[lang];
+
+  chaptersData.forEach(ch => {
+    const item = document.createElement('div');
+    item.className = 'reading-item';
+    const title = lang === 'fa' ? `فصل ${ch.num}: ${ch.fa.title}` : `Chapter ${ch.num}: ${ch.en.title}`;
+    const desc = lang === 'fa' ? ch.faReadingDesc : ch.enReadingDesc;
+    const modalTitle = `${title} (${lang === 'fa' ? 'کتاب مرجع' : 'Textbook Reading'})`;
+
+    item.innerHTML = `
+      <div class="reading-item-header">
+        <span class="reading-item-title">${title}</span>
+        <span class="reading-item-pages">📖 ${ch.readingPages} ${t.pagesWord}</span>
+      </div>
+      <p class="reading-item-desc">${desc}</p>
+      <div class="reading-item-actions">
+        <button class="btn btn-primary btn-sm" onclick="openPdfModal('${ch.readingPdf}', '${modalTitle}')">
+          <span>👁️</span> ${t.readOnline}
+        </button>
+        <a class="btn btn-secondary btn-sm" href="${ch.readingPdf}" download>
+          <span>⬇️</span> ${t.downloadPdf}
+        </a>
+      </div>
+    `;
+    container.appendChild(item);
+  });
 }
 
 function renderChapterCards(lang, filterQuery = "") {

@@ -10,6 +10,7 @@
   <a href="#"><img src="https://img.shields.io/badge/Course-IE500%20Data%20Mining-1e3a8a?style=for-the-badge&logo=google-classroom&logoColor=white" alt="Course IE500"></a>
   <a href="#"><img src="https://img.shields.io/badge/Typeset%20with-XeLaTeX%20%26%20XePersian-008080?style=for-the-badge&logo=latex&logoColor=white" alt="LaTeX XePersian"></a>
   <a href="#"><img src="https://img.shields.io/badge/Total%20Slides-419%20Slides-f59e0b?style=for-the-badge&logo=slides&logoColor=white" alt="Total Slides"></a>
+  <a href="#-صفحات-برگزیده-کتاب-مرجع-curated-readings"><img src="https://img.shields.io/badge/Curated%20Readings-7%20Chapters-8b5cf6?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Curated Readings"></a>
   <a href="#"><img src="https://img.shields.io/badge/Status-100%25%20Completed-059669?style=for-the-badge&logo=checkmarx&logoColor=white" alt="Status"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-64748b?style=for-the-badge" alt="License"></a>
 </p>
@@ -23,7 +24,8 @@
 👉 **[ورود به پرتال وب‌سایت داده‌کاوی (Live Website)](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/)**
 
 ### امکانات پرتال وب:
-- 📖 **مطالعه آنلاین اسلایدها (In-Page PDF Reader):** بدون نیاز به دانلود، اسلایدهای هر فصل را به صورت تمام‌صفحه و با کیفیت وکتور مشاهده کنید.
+- 📖 **مطالعه آنلاین اسلایدها و کتاب (In-Page PDF Reader):** بدون نیاز به دانلود، اسلایدهای هر فصل و صفحات برگزیده کتاب را به صورت تمام‌صفحه و با کیفیت وکتور مشاهده کنید.
+- 📑 **صفحات برگزیده کتاب به تفکیک فصل:** دسترسی سریع به بخش‌های اصلی کتاب مرجع بدون سردرگمی میان ۸۶۶ صفحه کتاب اصلی.
 - 🌐 **پشتیبانی دو زبانه (FA / EN):** سوییچ روان بین زبان فارسی و انگلیسی همراه با تغییر خودکار جهت چیدمان (`RTL` و `LTR`).
 - 📥 **دسترسی هم‌زمان:** امکان دانلود مستقیم نسخه ترجمه‌شده فارسی و نسخه انگلیسی اصلی برای تمامی فصول.
 - 🔍 **موتور جستجوی زنده:** فیلتر آنی فصول بر اساس کلمات کلیدی، الگوریتم‌ها و سرفصل‌ها.
@@ -38,7 +40,7 @@
 ### ویژگی‌های فنی نگارش:
 1. **تایپ‌ست استاندارد با XePersian:** متون فارسی با رعایت دقیق اصول فاصله‌گذاری، نیم‌فاصله‌ها و تراز راست‌به‌چپ در قالب Beamer پیاده‌سازی شده‌اند.
 2. **فرمول‌های ریاضی استاندارد:** تمامی معادلات و روابط آماری با برچسب‌گذاری صحیح LTR و بدون خطای تداخل جهت‌گیری متن کامپایل گردیده‌اند.
-3. **نمودارها و تصاویر باکیفیت:** بازتولید و پاکسازی تصاویر نمودارها، ماتریس‌ها و ساختارهای درختی برای تضمین بالاترین وضوح دیداری.
+3. **نمودارها و تصاویر باکیفیت:** بازتولید و پاکسازی تصاویر نمودارها، ماتریس‌ها و ساختارهای درختی برای تضمین بالاترین ووضوح دیداری.
 
 ---
 
@@ -58,7 +60,23 @@
 
 ---
 
-## 📘 کتاب مرجع درس (Reference Textbook)
+## 📑 صفحات برگزیده کتاب مرجع (Curated Readings)
+
+به منظور بهینه‌سازی زمان مطالعه دانشجویان و بی‌نیازی از جستجوی دستی در کتاب مرجع ۸۶۶ صفحه‌ای، برای هر فصل اسلایدها یک فایل اختصاصی از کتاب مرجع پنگ-نینگ تن استخراج شده است. هر فایل شامل صفحه عنوان و راهنمای مطالعه، سرفصل‌های منطبق، و بوک‌مارک‌های کلیک‌پذیر (Table of Contents) درون فایل PDF می‌باشد:
+
+| فصل | مبحث مرتبط در اسلایدها | بخش‌های منتخب کتاب پنگ-نینگ تن | صفحات | دریافت فایل گلچین | مطالعه در پرتال |
+| :---: | :--- | :--- | :---: | :---: | :---: |
+| **۰۱** | **مقدمه‌ای بر داده‌کاوی** | فصل ۱ (۱.۱ تا ۱.۵) + بخش ۶.۳ (KNN) | ۲۰ | [PDF گلچین](./Textbook_Readings/01_Introduction_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#readings-section) |
+| **۰۲** | **پیش‌پردازش داده‌ها** | فصل ۲ (انواع داده، تشابه، کاهش ابعاد) + بخش ۶.۱۱ (عدم تعادل و SMOTE) | ۹۶ | [PDF گلچین](./Textbook_Readings/02_Preprocessing_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#readings-section) |
+| **۰۳** | **طبقه‌بندی: درخت تصمیم و ارزیابی** | فصل ۳ (۳.۱ تا ۳.۴ درخت و بیش‌برازش) + ۶.۱۰ (Random Forest) + ۶.۱۱ (ROC/معیارها) | ۷۴ | [PDF گلچین](./Textbook_Readings/03_Classification_Part1_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#readings-section) |
+| **۰۴** | **طبقه‌بندی: بیز، SVM و شبکه‌های عصبی** | بخش‌های ۶.۴ (Naive Bayes) + ۶.۷ تا ۶.۹ (ANN/DL/SVM) + ۳.۵ و ۳.۷ (اعتبارسنجی) | ۷۶ | [PDF گلچین](./Textbook_Readings/04_Classification_Part2_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#readings-section) |
+| **۰۵** | **تحلیل رگرسیون** | مبانی کتاب: بخش ۶.۶ (رگرسیون لوجستیک) + ۶.۱۰.۳ (Bias-Variance) + ۳.۴ + ۹.۳.۴ | ۲۹ | [PDF گلچین](./Textbook_Readings/05_Regression_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#readings-section) |
+| **۰۶** | **تحلیل خوشه‌بندی** | فصل ۵ (K-Means، سلسله‌مراتبی، DBSCAN، ارزیابی) + بخش‌های ۲.۴ و ۹.۱ تا ۹.۵ (LOF) | ۱۱۰ | [PDF گلچین](./Textbook_Readings/06_Clustering_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#readings-section) |
+| **۰۷** | **تحلیل وابستگی و قواعد انجمنی** | فصل ۴ (قواعد، الگوریتم Apriori، هرس، معیار Lift) + فصل ۷ (صفات پیوسته) | ۶۳ | [PDF گلچین](./Textbook_Readings/07_Association_Analysis_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#readings-section) |
+
+---
+
+## 📘 کتاب مرجع کامل درس (Full Reference Textbook)
 
 - **عنوان کتاب:** *Introduction to Data Mining (2nd Edition)*
 - **نویسندگان:** Pang-Ning Tan, Michael Steinbach, Anuj Karpatne, Vipin Kumar
