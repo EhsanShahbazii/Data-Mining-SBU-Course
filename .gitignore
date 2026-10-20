@@ -18,3 +18,9 @@ Thumbs.db
 *.synctex.gz
 *.fls
 *.fdb_latexmk
+
+# Interactive textbook build state
+node_modules/
+notes/build/
+.venv/
+__pycache__/

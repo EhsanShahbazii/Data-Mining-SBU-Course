@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">درس داده‌کاوی (IE500 Data Mining)</h1>
-<h3 align="center">مجموعه اسلایدهای جامع آموزشی، ترجمه تخصصی فارسی و پرتال تعاملی دانشجویی</h3>
+<h3 align="center">جزوهٔ فارسی، آزمایشگاه‌های تعاملی و اسلایدهای اصلی و ترجمه‌شده</h3>
 
 <p align="center">
   <a href="https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/"><img src="https://img.shields.io/badge/Website-Live%20Portal-0284c7?style=for-the-badge&logo=githubpages&logoColor=white" alt="Live Portal"></a>
@@ -23,13 +23,30 @@
 
 👉 **[ورود به پرتال وب‌سایت داده‌کاوی (Live Website)](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/)**
 
-### امکانات پرتال وب:
-- 📖 **مطالعه آنلاین اسلایدها و کتاب (In-Page PDF Reader):** بدون نیاز به دانلود، اسلایدهای هر فصل و صفحات برگزیده کتاب را به صورت تمام‌صفحه و با کیفیت وکتور مشاهده کنید.
-- 📑 **صفحات برگزیده کتاب به تفکیک فصل:** دسترسی سریع به بخش‌های اصلی کتاب مرجع بدون سردرگمی میان ۸۶۶ صفحه کتاب اصلی.
-- 🌐 **پشتیبانی دو زبانه (FA / EN):** سوییچ روان بین زبان فارسی و انگلیسی همراه با تغییر خودکار جهت چیدمان (`RTL` و `LTR`).
-- 📥 **دسترسی هم‌زمان:** امکان دانلود مستقیم نسخه ترجمه‌شده فارسی و نسخه انگلیسی اصلی برای تمامی فصول.
-- 🔍 **موتور جستجوی زنده:** فیلتر آنی فصول بر اساس کلمات کلیدی، الگوریتم‌ها و سرفصل‌ها.
-- 🌓 **طراحی مدرن و ریسپانسیو:** پشتیبانی از حالت‌های تیره/روشن (Dark/Light) و سازگاری کامل با گوشی‌های همراه، تبلت و دسکتاپ.
+### امکانات وب‌سایت
+- 📖 کتاب فارسی با ۷ فصل درسی، ۶۵ صفحه PDF و منبع LaTeX فصل‌بندی‌شده.
+- 🧪 ۲۱ آزمایشگاه تعاملی با محاسبات واقعی، مسیر پیشنهادی و بازنشانی.
+- 📝 ۵۲ خودآزمایی با پاسخ‌هایی که مستقل از هم باز می‌شوند.
+- 📥 دانلود مستقیم هر ۷ اسلاید اصلی، هر ۷ ترجمهٔ فارسی و ۷ خواندنی منتخب کتاب از بخش [اسلایدها و منابع](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#resources).
+- 📐 نمایش فرمول‌ها با KaTeX، PDFخوان محلی، تنظیم اندازهٔ متن، حالت تیره، جست‌وجو و نشان‌گذاری.
+
+**استاد درس:** دکتر شیرین شعاعی · **گردآورنده:** احسان شهبازی
+
+[📘 جزوهٔ کامل PDF](assets/lecture.pdf) · [🛠 پروژهٔ فصل‌بندی‌شدهٔ LaTeX](assets/latex-project.zip) · [📄 منبع یک‌فایلی](assets/lecture.tex)
+
+### ویرایش و بررسی نسخهٔ جدید
+
+منبع جزوه در `notes/`، منبع اسلایدهای ترجمه‌شده در `translations/` و فایل‌های وب در ریشهٔ مخزن قرار دارند. فایل‌های اصلی و ترجمه‌های قبلی حفظ شده‌اند.
+
+```sh
+npm run check
+npm test
+python3 -m http.server 4175
+```
+
+برای بازسازی متن وب از LaTeX، `npm run build` و برای بازسازی PDF فصل‌ها، `python3 tools/build_book.py --with-pdf` را اجرا کنید. این مرحله به Python، PyMuPDF، Pandoc و XeLaTeX نیاز دارد. PDF کامل از `notes/main.tex` ساخته می‌شود. فهرست اسلایدها با `npm run build:resources` به‌روز می‌شود.
+
+تست‌ها شامل ۳۰ حالت مرجع مستقل از NumPy، scikit-learn و SciPy، کنترل گرادیان پس‌انتشار با مشتق عددی، تمام آستانه‌های پشتیبانی و کاهش هدف k-means هستند؛ تست‌های Node به نصب کتابخانه‌های علمی Python نیاز ندارند.
 
 ---
 
@@ -66,13 +83,13 @@
 
 | فصل | مبحث مرتبط در اسلایدها | بخش‌های منتخب کتاب پنگ-نینگ تن | صفحات | دریافت فایل گلچین | مطالعه در پرتال |
 | :---: | :--- | :--- | :---: | :---: | :---: |
-| **۰۱** | **مقدمه‌ای بر داده‌کاوی** | فصل ۱ (۱.۱ تا ۱.۵) + بخش ۶.۳ (KNN) | ۲۰ | [PDF گلچین](./Textbook_Readings/01_Introduction_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#readings-section) |
-| **۰۲** | **پیش‌پردازش داده‌ها** | فصل ۲ (انواع داده، تشابه، کاهش ابعاد) + بخش ۶.۱۱ (عدم تعادل و SMOTE) | ۹۶ | [PDF گلچین](./Textbook_Readings/02_Preprocessing_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#readings-section) |
-| **۰۳** | **طبقه‌بندی: درخت تصمیم و ارزیابی** | فصل ۳ (۳.۱ تا ۳.۴ درخت و بیش‌برازش) + ۶.۱۰ (Random Forest) + ۶.۱۱ (ROC/معیارها) | ۷۴ | [PDF گلچین](./Textbook_Readings/03_Classification_Part1_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#readings-section) |
-| **۰۴** | **طبقه‌بندی: بیز، SVM و شبکه‌های عصبی** | بخش‌های ۶.۴ (Naive Bayes) + ۶.۷ تا ۶.۹ (ANN/DL/SVM) + ۳.۵ و ۳.۷ (اعتبارسنجی) | ۷۶ | [PDF گلچین](./Textbook_Readings/04_Classification_Part2_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#readings-section) |
-| **۰۵** | **تحلیل رگرسیون** | مبانی کتاب: بخش ۶.۶ (رگرسیون لوجستیک) + ۶.۱۰.۳ (Bias-Variance) + ۳.۴ + ۹.۳.۴ | ۲۹ | [PDF گلچین](./Textbook_Readings/05_Regression_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#readings-section) |
-| **۰۶** | **تحلیل خوشه‌بندی** | فصل ۵ (K-Means، سلسله‌مراتبی، DBSCAN، ارزیابی) + بخش‌های ۲.۴ و ۹.۱ تا ۹.۵ (LOF) | ۱۱۰ | [PDF گلچین](./Textbook_Readings/06_Clustering_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#readings-section) |
-| **۰۷** | **تحلیل وابستگی و قواعد انجمنی** | فصل ۴ (قواعد، الگوریتم Apriori، هرس، معیار Lift) + فصل ۷ (صفات پیوسته) | ۶۳ | [PDF گلچین](./Textbook_Readings/07_Association_Analysis_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#readings-section) |
+| **۰۱** | **مقدمه‌ای بر داده‌کاوی** | فصل ۱ (۱.۱ تا ۱.۵) + بخش ۶.۳ (KNN) | ۲۰ | [PDF گلچین](./Textbook_Readings/01_Introduction_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#resources) |
+| **۰۲** | **پیش‌پردازش داده‌ها** | فصل ۲ (انواع داده، تشابه، کاهش ابعاد) + بخش ۶.۱۱ (عدم تعادل و SMOTE) | ۹۶ | [PDF گلچین](./Textbook_Readings/02_Preprocessing_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#resources) |
+| **۰۳** | **طبقه‌بندی: درخت تصمیم و ارزیابی** | فصل ۳ (۳.۱ تا ۳.۴ درخت و بیش‌برازش) + ۶.۱۰ (Random Forest) + ۶.۱۱ (ROC/معیارها) | ۷۴ | [PDF گلچین](./Textbook_Readings/03_Classification_Part1_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#resources) |
+| **۰۴** | **طبقه‌بندی: بیز، SVM و شبکه‌های عصبی** | بخش‌های ۶.۴ (Naive Bayes) + ۶.۷ تا ۶.۹ (ANN/DL/SVM) + ۳.۵ و ۳.۷ (اعتبارسنجی) | ۷۶ | [PDF گلچین](./Textbook_Readings/04_Classification_Part2_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#resources) |
+| **۰۵** | **تحلیل رگرسیون** | مبانی کتاب: بخش ۶.۶ (رگرسیون لوجستیک) + ۶.۱۰.۳ (Bias-Variance) + ۳.۴ + ۹.۳.۴ | ۲۹ | [PDF گلچین](./Textbook_Readings/05_Regression_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#resources) |
+| **۰۶** | **تحلیل خوشه‌بندی** | فصل ۵ (K-Means، سلسله‌مراتبی، DBSCAN، ارزیابی) + بخش‌های ۲.۴ و ۹.۱ تا ۹.۵ (LOF) | ۱۱۰ | [PDF گلچین](./Textbook_Readings/06_Clustering_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#resources) |
+| **۰۷** | **تحلیل وابستگی و قواعد انجمنی** | فصل ۴ (قواعد، الگوریتم Apriori، هرس، معیار Lift) + فصل ۷ (صفات پیوسته) | ۶۳ | [PDF گلچین](./Textbook_Readings/07_Association_Analysis_Textbook_Reading.pdf) | [مطالعه آنلاین](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#resources) |
 
 ---
 
@@ -81,7 +98,7 @@
 - **عنوان کتاب:** *Introduction to Data Mining (2nd Edition)*
 - **نویسندگان:** Pang-Ning Tan, Michael Steinbach, Anuj Karpatne, Vipin Kumar
 - **ناشر:** Pearson Education Limited
-- **دسترسی به فایل:** [دانلود کتاب مرجع از مخزن](./Books/Pang-Ning%20Tan%20-%20Introduction%20to%20Data%20Mining%20(2019%2C%20Pearson%20Education%20Limited)%20-%20libgen.li.pdf) یا [مشاهده آنلاین در پرتال](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#reference-book)
+- **دسترسی به فایل:** [دانلود کتاب مرجع از مخزن](./Books/Pang-Ning%20Tan%20-%20Introduction%20to%20Data%20Mining%20(2019%2C%20Pearson%20Education%20Limited)%20-%20libgen.li.pdf) یا [مشاهده آنلاین در پرتال](https://ehsanshahbazii.github.io/Data-Mining-SBU-Course/#resources)
 
 ---
 

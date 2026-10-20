@@ -1,0 +1,26 @@
+% !TeX program = xelatex
+\documentclass[12pt,a4paper,oneside]{report}
+\input{config/packages.tex}
+\input{config/fonts.tex}
+\input{config/colors.tex}
+\input{config/info.tex}
+\input{config/metadata.tex}
+\input{config/layout.tex}
+\input{config/environments.tex}
+\input{config/commands.tex}
+\begin{document}
+\input{frontmatter/cover.tex}
+\pagenumbering{roman}
+\input{frontmatter/guide.tex}
+\tableofcontents
+\clearpage\pagenumbering{arabic}
+\input{chapters/01-introduction.tex}
+\input{chapters/02-preprocessing.tex}
+\input{chapters/03-classification-foundations.tex}
+\input{chapters/04-classification-models.tex}
+\input{chapters/05-regression.tex}
+\input{chapters/06-clustering.tex}
+\input{chapters/07-association-analysis.tex}
+\appendix
+\input{appendices/reference.tex}
+\end{document}

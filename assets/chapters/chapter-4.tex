@@ -1,0 +1,245 @@
+% !TeX program = xelatex
+\documentclass[12pt,a4paper,oneside]{report}
+% !TeX root = ../main.tex
+\XeTeXgenerateactualtext=1
+\usepackage[margin=23mm,top=24mm,bottom=24mm,headheight=27pt]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,array,longtable,tabularx}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,patterns}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec,needspace}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{xepersian}
+
+% !TeX root = ../main.tex
+\settextfont[Scale=1.06,BoldFont=Amiri-Bold.ttf]{Amiri-Regular.ttf}
+\setlatintextfont[BoldFont=texgyretermes-bold.otf,ItalicFont=texgyretermes-italic.otf,BoldItalicFont=texgyretermes-bolditalic.otf]{texgyretermes-regular.otf}
+
+% !TeX root = ../main.tex
+\definecolor{navy}{HTML}{163747}
+\definecolor{teal}{HTML}{127C80}
+\definecolor{gold}{HTML}{B18542}
+\definecolor{paper}{HTML}{F3F7F7}
+\definecolor{muted}{HTML}{5E7178}
+\definecolor{alert}{HTML}{A45538}
+
+% مشخصات جزوه؛ عنوان و نام‌ها فقط در این فایل تغییر می‌کنند.
+\newcommand{\BookTitle}{داده‌کاوی}
+\newcommand{\BookSubtitle}{از دادهٔ خام تا الگو و مدل قابل اعتماد}
+\newcommand{\CourseInstructor}{دکتر شیرین شعاعی}
+\newcommand{\BookCompilers}{احسان شهبازی}
+
+\hypersetup{unicode=true,colorlinks=true,linkcolor=navy,urlcolor=teal,
+ pdftitle={داده‌کاوی ـ کتاب آموزشی و تعاملی},pdfauthor={احسان شهبازی},pdfsubject={پیش‌پردازش، طبقه‌بندی، رگرسیون، خوشه‌بندی و تحلیل وابستگی}}
+
+% !TeX root = ../main.tex
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\linespread{1.12}
+\raggedbottom
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+\allowdisplaybreaks[2]
+\emergencystretch=2em
+% Page styles use explicit boxes to keep bidi direction groups balanced.
+\makeatletter
+\def\ps@lecture{%
+  \def\@oddhead{\vbox{\hbox to\textwidth{\small
+    \rl{\BookTitle}\hfil\rl{\leftmark}}%
+    \kern4pt\hrule height .35pt}}%
+  \let\@evenhead\@oddhead
+  \def\@oddfoot{\hfil\thepage\hfil}%
+  \let\@evenfoot\@oddfoot}
+\makeatother
+\pagestyle{lecture}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\titleformat{\chapter}[display]{\color{navy}\bfseries\Huge}{\large فصل \thechapter}{8pt}{}[\vspace{4pt}\color{gold}\titlerule]
+\titlespacing*{\chapter}{0pt}{0pt}{18pt}
+\titleformat{\section}[block]{\Large\bfseries\color{navy}}{\thesection}{.6em}{}
+\titleformat{\subsection}[block]{\large\bfseries\color{teal}}{\thesubsection}{.6em}{}
+
+% !TeX root = ../main.tex
+\tcbset{enhanced,breakable,boxrule=.45pt,arc=1.5mm,
+ left=3mm,right=3mm,top=2mm,bottom=2mm,before skip=9pt,after skip=9pt,
+ fonttitle=\bfseries,coltitle=white,colback=paper,colframe=teal}
+\newtcolorbox{definition}[1]{breakable=false,title={تعریف | #1},colframe=navy,colback=navy!3!white}
+\newtcolorbox{result}[1]{breakable=false,title={نتیجهٔ کلیدی | #1},colframe=teal,colback=teal!4!white}
+\newtcolorbox{important}[1]{breakable=false,title={دقت کنید | #1},colframe=gold,colback=gold!6!white}
+\newcounter{ex}[chapter]
+\newenvironment{example}[1]{\refstepcounter{ex}\begin{tcolorbox}[breakable=false,title={مثال \thechapter.\arabic{ex} | #1},colframe=muted,colback=white]}{\end{tcolorbox}}
+
+% Structured exercises: the web builder turns answers into closed disclosures.
+\newenvironment{selftests}{\begin{enumerate}\setlength{\itemsep}{9pt}}{\end{enumerate}}
+\newenvironment{selftest}[1]{\item\textbf{#1}\par}{\par}
+\newcommand{\answer}[1]{\par{\color{teal}\bfseries پاسخ و توضیح: }#1\par}
+
+% !TeX root = ../main.tex
+\newcommand{\edit}[1]{\par\begingroup\small\color{alert}\textbf{تکمیل یا اصلاح علمی.} #1\par\endgroup}
+\newcommand{\source}[1]{\par{\small\color{muted} منبع مطالعه: #1}\par}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\MSE}{\operatorname{MSE}}
+\newcommand{\Bias}{\operatorname{Bias}}
+\newcommand{\SE}{\operatorname{SE}}
+\newcommand{\iid}{\overset{\mathrm{iid}}{\sim}}
+\newcommand{\N}{\mathcal N}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\sol}{\par\textbf{حل.} }
+\newcommand{\figcap}[1]{\par\smallskip{\small\color{muted}#1}\par}
+
+\newcommand{\labref}[1]{\par\smallskip{\small\color{teal}\textbf{آزمایشگاه پیشنهادی.} #1}\par}
+\newcommand{\checkanswer}[1]{\par\textbf{پاسخ کوتاه.} #1\par}
+
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\passthrough}[1]{#1}
+
+
+
+\hypersetup{pdftitle={بیز، حاشیه و شبکه‌های عصبی},pdfauthor={دکتر شیرین شعاعی؛ احسان شهبازی}}
+\begin{document}
+\setcounter{chapter}{3}
+\chapter{بیز، حاشیه و شبکه‌های عصبی}
+\begin{center}{\small\color{muted} استاد درس: دکتر شیرین شعاعی\\[2mm] گردآورنده جزوه: احسان شهبازی}\end{center}
+
+\source{اسلاید طبقه‌بندی ۲، PDF ۳ تا ۴۱؛ کتاب بخش‌های ۶٫۴، ۶٫۷، ۶٫۸ و ۶٫۹، صفحات چاپی ۴۱۴ تا ۴۹۷.}
+\section{قاعدهٔ بیز و استقلال شرطی}
+یک طبقه‌بند احتمالی می‌پرسد پس از دیدن ویژگی‌ها، کدام طبقه محتمل‌تر است؟ اگر $C$ متغیر طبقه و $\mathbf x$ ویژگی‌های مشاهده‌شده باشد، قاعدهٔ بیز می‌دهد:
+\[P(C=c\mid\mathbf x)=\frac{P(\mathbf x\mid C=c)P(C=c)}{P(\mathbf x)}.\]
+پیشین $P(C=c)$ فراوانی یا باور پیش از دیدن ویژگی‌ها، درست‌نمایی $P(\mathbf x\mid C=c)$ سازگاری مشاهده با طبقه و پسین، احتمال طبقه پس از مشاهده است. مخرج میان طبقه‌ها مشترک است؛ برای انتخاب طبقه، بیشینه کردن صورت کافی است، اما برای گزارش پسین باید امتیازها را نرمال کنیم.
+
+اگر $d$ ویژگیِ $v$حالته داشته باشیم، جدول مشترک تا $v^d$ ترکیب دارد. دادهٔ محدود برای برآورد همهٔ خانه‌ها کافی نیست. بیز ساده فرض می‌کند ویژگی‌ها به شرط طبقه مستقل‌اند:
+\begin{align*}
+P(\mathbf x\mid C=c)&=\prod_{j=1}^dP(x_j\mid C=c),\\
+q_c&=P(C=c)\prod_jP(x_j\mid C=c),\\
+P(C=c\mid\mathbf x)&=\frac{q_c}{\sum_rq_r}.
+\end{align*}
+این فرض با استقلال بدون شرط متفاوت است. دو ویژگی می‌توانند به علت وابستگی به یک عامل مشترک همبسته باشند و پس از شرط کردن بر آن، رابطهٔ کمتری داشته باشند. بیز ساده تعداد پارامترها را کاهش می‌دهد؛ نقض فرض لزوماً برچسب را خراب نمی‌کند، ولی احتمال‌های مدل ممکن است بیش از حد مطمئن باشند. دو بار وارد کردن یک ویژگی، شواهد مستقلی تولید نمی‌کند.
+
+\begin{example}{مثال گلف و محاسبهٔ پسین}
+در ۱۴ روز مثال اسلاید، ۹ روز پاسخ مثبت و ۵ روز پاسخ منفی است. برای ویژگی‌های \lr{Sunny,Cool,High,True}، شمارش‌های شرطی می‌دهند:
+\[q_{\mathrm{yes}}=\frac9{14}\frac29\frac39\frac39\frac39=\frac1{189},\qquad q_{\mathrm{no}}=\frac5{14}\frac35\frac15\frac45\frac35=\frac{18}{875}.\]
+پس از نرمال‌سازی، احتمال مثبت تقریباً $0.20458$ و احتمال منفی $0.79542$ است. حاصل‌ضرب خام $1/189$ خودِ پسین نیست. اگر همهٔ ویژگی‌ها نامعلوم باشند، مدلِ مبتنی بر حذف عامل‌ها تنها از پیشین‌ها استفاده می‌کند.
+\end{example}
+
+\section{هموارسازی، ویژگی پیوسته و دادهٔ گمشده}
+اگر یک مقدار در یک طبقه مشاهده نشده باشد، تخمین فراوانی صفر است و کل حاصل‌ضرب صفر می‌شود. صفر بار مشاهده شدن در نمونهٔ کوچک با ناممکن بودن برابر نیست. هموارسازی افزایشی برای یک ویژگی $v$حالته چنین است:
+\[P(X_j=a\mid C=c)=\frac{N_{j,a,c}+\alpha}{N_c+\alpha v},\qquad\alpha>0.\]
+برای لاپلاس $\alpha=1$ است. اگر در ۱۰ رکوردِ یک طبقه، یک مقدار از ویژگی سه‌حالته دیده نشده باشد، احتمال هموارشده $1/13$ است. همهٔ خانه‌های همان ویژگی باید با یک قرارداد هموار شوند تا جمع احتمال‌ها یک بماند. هموار کردن فقط خانهٔ صفر، یک توزیع معتبر نمی‌سازد.
+
+برای ویژگی پیوسته می‌توان گسسته‌سازی کرد یا یک مدل درون‌طبقه‌ای، مثلاً نرمال، برازش داد:
+\[f_j(x\mid c)=\frac1{\sigma_{jc}\sqrt{2\pi}}\exp\left[-\frac{(x-\mu_{jc})^2}{2\sigma_{jc}^2}\right].\]
+میانگین و واریانس باید از رکوردهای همان طبقه به دست آیند. چگالی در یک نقطه، احتمال نقطه‌ای نیست. برای نمونهٔ $\mu=73,\sigma=6.2,x=66$ چگالی حدود $0.034$ است، ولی برای متغیر پیوسته احتمال دقیقاً برابر ۶۶ بودن صفر است. برآورد بیشینهٔ درست‌نمایی واریانس مخرج $N_c$ و برآورد نااریب مخرج $N_c-1$ دارد؛ قرارداد مثال و کد باید ثابت باشد. واریانس صفر به قاعدهٔ پایدار، مانند کف کوچک یا مدل جایگزین نیاز دارد.
+
+برای جلوگیری از زیرریز عددی، به‌جای ضرب تعداد زیادی احتمال کوچک، امتیاز لگاریتمی را جمع می‌کنیم:
+\[\ell_c=\log P(C=c)+\sum_j\log P(x_j\mid C=c).\]
+عامل ویژگی گمشده را می‌توان در پیش‌بینی حذف کرد؛ در مدل مستقل این با حاشیه‌گیری روی آن ویژگی سازگار است. اما اگر سازوکار فقدان اطلاعات مهمی دربارهٔ طبقه داشته باشد، حذف ساده آن را نادیده می‌گیرد. در آموزش نیز مخرج شمارش هر ویژگی باید با رکوردهای مشاهده‌شدهٔ همان ویژگی سازگار باشد.
+\labref{در آزمایشگاه بیز ساده، شواهد هر ویژگی، اثر هموارسازی و حذف یک ویژگی گمشده را جداگانه ببینید؛ سپس جمع امتیازها را به پسین تبدیل کنید.}
+
+\section{هندسهٔ ماشین بردار پشتیبان}
+برای برچسب‌های $y_i\in\{-1,+1\}$، مرز خطی با $\mathbf w^\mathsf T\mathbf x+b=0$ تعریف می‌شود. چند مرز ممکن است آموزش را بی‌خطا جدا کنند؛ SVM مرزی می‌جوید که فاصلهٔ نزدیک‌ترین مشاهده‌ها تا آن زیاد باشد. فاصلهٔ هندسی و پهنای حاشیه در مقیاس متعارف برابرند با
+\[d(\mathbf x,H)=\frac{|\mathbf w^\mathsf T\mathbf x+b|}{\|\mathbf w\|_2},\qquad \operatorname{margin}=\frac2{\|\mathbf w\|_2}.\]
+صفحه‌های حاشیه امتیازهای $+1$ و $-1$ دارند. ضرب کردن هم‌زمان $\mathbf w,b$ در یک عدد مثبت، مرز را جابه‌جا نمی‌کند؛ بنابراین بزرگی امتیاز خام با فاصلهٔ هندسی یکی نیست.
+
+در حالت جدایی خطی کامل، مسئلهٔ حاشیهٔ سخت چنین است:
+\[\min_{\mathbf w,b}\frac12\|\mathbf w\|_2^2\quad\text{subject to}\quad y_i(\mathbf w^\mathsf T\mathbf x_i+b)\ge1.\]
+برای نقاط یک‌بعدی منفی $-2,-1$ و مثبت $1,2$، پاسخ $w=1,b=0$ است؛ نقاط $-1$ و $1$ بردار پشتیبان و حاشیهٔ کامل برابر ۲ است. وقتی داده‌ها هم‌پوشان یا نویزی‌اند، قید سخت ممکن است شدنی نباشد.
+
+\section{حاشیهٔ نرم، زیان لولایی و هسته}
+متغیر لغزش اجازهٔ نقض حاشیه می‌دهد:
+\[\min_{\mathbf w,b,\boldsymbol\xi}\frac12\|\mathbf w\|_2^2+C\sum_i\xi_i,\qquad y_if(\mathbf x_i)\ge1-\xi_i,\quad\xi_i\ge0.\]
+اگر $0<\xi_i<1$ باشد، نقطه هنوز می‌تواند درست طبقه‌بندی شده باشد؛ نقض حاشیه با اشتباه برچسب یکسان نیست. برای یک نقطهٔ مثبت با امتیاز $0.4$، لغزش کمینه $0.6$ است. امتیاز منفی برای همین نقطه به معنی اشتباه در طبقه‌بندی است. صورت بدون قید از زیان لولایی استفاده می‌کند:
+\[L_{\mathrm{hinge}}(y,f)=\max(0,1-yf).\]
+در این قرارداد، $C$ بزرگ نقض حاشیه را پرهزینه‌تر می‌کند؛ پس نباید آن را مستقیماً «شدت بیشتر منظم‌سازی» نامید. اثر نهایی بر تعمیم با اعتبارسنجی سنجیده می‌شود.
+
+هسته ضرب داخلی در یک فضای تبدیل‌شده را بدون ساخت صریح تمام مؤلفه‌ها محاسبه می‌کند:
+\[K(\mathbf x,\mathbf z)=\phi(\mathbf x)^\mathsf T\phi(\mathbf z),\qquad K_{\mathrm{RBF}}=\exp(-\gamma\|\mathbf x-\mathbf z\|_2^2).\]
+هستهٔ چندجمله‌ای نمونه‌ای مانند $(\mathbf x^\mathsf T\mathbf z+1)^r$ دارد. در RBF ، بزرگ شدن $\gamma$ ناحیهٔ اثر هر نقطه را محلی‌تر می‌کند. انتخاب $C$ و $\gamma$ همراه با مقیاس‌بندیِ داخل هر دور اعتبارسنجی انجام می‌شود. امتیاز تصمیم SVM خودبه‌خود احتمال کالیبره نیست. برای دادهٔ اسمی، رمزگذاری مناسب لازم است؛ عددی بودن ورودی پس از رمزگذاری با پیوسته بودن معنای اولیهٔ آن تفاوت دارد.
+\labref{آزمایشگاه حاشیه، جابه‌جایی خط و قیدهای هندسی را بررسی می‌کند؛ حرکت دستی خط، آموزش یک حل‌کنندهٔ SVM نیست. مقدار حاشیه، تعداد خطاها و زیان لولایی از داده و خط واقعاً محاسبه می‌شوند.}
+
+\section{پرسپترون و محدودیت یک مرز خطی}
+پرسپترون جمع وزن‌دار ورودی را با آستانه مقایسه می‌کند:
+\[\widehat y=\mathbf1\{\mathbf w^\mathsf T\mathbf x+b>0\}.\]
+برای سه ورودی دودویی، وزن‌های $0.3$ و آستانهٔ $0.4$، شرط «حداقل دو ورودی یک» را پیاده می‌کنند: یک ورودی یک، امتیاز $0.3$ و دو ورودی یک، امتیاز $0.6$ می‌دهد. این نمایش دستی تابع است؛ هنوز الگوریتم یادگیری اجرا نشده است.
+
+در قرارداد برچسب صفر و یک، یک قاعدهٔ به‌روزرسانی متداول چنین است:
+\[\mathbf w\leftarrow\mathbf w+\eta(y-\widehat y)\mathbf x,\qquad b\leftarrow b+\eta(y-\widehat y).\]
+برای $\mathbf x=(1,1),y=1,\mathbf w=(0.1,0.1),b=-0.5,\eta=0.1$، پیش‌بینی صفر است و وزن تازه $(0.2,0.2)$ و عرض تازه $-0.4$ می‌شود. تکلیف برابری امتیاز با صفر باید روشن باشد. تضمین همگرایی استاندارد به جدایی خطی و فرض‌های متعارف وابسته است.
+
+XOR با یک مرز خطی جدا نمی‌شود. دو واحد پنهان می‌توانند OR و AND را بسازند:
+\[h_1=\mathbf1\{x_1+x_2>0.5\},\quad h_2=\mathbf1\{x_1+x_2>1.5\},\quad \widehat y=\mathbf1\{h_1-h_2>0.5\}.\]
+برای چهار حالت ورودی، خروجی‌ها $0,1,1,0$ می‌شوند. تابع پله برای نمایش منطق مناسب است، اما فعال‌ساز متداول پس‌انتشارِ گرادیانی نیست.
+
+\section{شبکهٔ چندلایه، زیان و پس‌انتشار}
+هر لایه از یک تبدیل آفین و یک فعال‌ساز تشکیل می‌شود:
+\[\mathbf z^{(l)}=W^{(l)}\mathbf a^{(l-1)}+\mathbf b^{(l)},\qquad \mathbf a^{(l)}=g(\mathbf z^{(l)}),\qquad \mathbf a^{(0)}=\mathbf x.\]
+بدون فعال‌ساز غیرخطی، ترکیب هر تعداد لایهٔ خطی باز هم یک نگاشت خطی یا آفین است. سیگموید و ReLU دو انتخاب آشنا هستند:
+\[\sigma(z)=\frac1{1+e^{-z}},\qquad\operatorname{ReLU}(z)=\max(0,z).\]
+در سیگموید، $\sigma'(z)=\sigma(z)(1-\sigma(z))$ در ناحیهٔ اشباع کوچک است. ضرب این مشتق‌ها در زنجیرهٔ لایه‌ها می‌تواند گرادیان را کوچک کند. ReLU در نیمهٔ مثبت مشتق یک دارد، ولی این به معنی حذف همیشگی تمام مشکلات گرادیان نیست.
+
+برای خروجی دودویی سیگمویدی، آنتروپی متقاطع یکی از زیان‌هاست:
+\[L=-y\log a-(1-y)\log(1-a),\qquad \frac{\partial L}{\partial z}=a-y.\]
+پس‌انتشار با قاعدهٔ زنجیره‌ای گرادیان پارامترهای همهٔ لایه‌ها را محاسبه می‌کند؛ گرادیان‌کاهشی از این گرادیان برای تغییر وزن استفاده می‌کند:
+\[\boldsymbol\theta\leftarrow\boldsymbol\theta-\eta\nabla_{\boldsymbol\theta}L.\]
+این دو مرحله مترادف نیستند. در شبکه، وزن‌ها میان همهٔ نمونه‌ها مشترک‌اند؛ نباید اندیس نمونه را به معنی شبکهٔ مستقل برای هر نمونه گرفت. مقدار اولیه، نرخ یادگیری، اندازهٔ دسته، معماری و منظم‌سازی بر نتیجه اثر دارند. مسئلهٔ آموزش معمولاً غیرمحدب است؛ رسیدن به یک نقطهٔ بهینهٔ محلی تضمین بهترین جواب جهانی نیست.
+
+کتاب، حذف تصادفی واحدها در آموزش یا \lr{Dropout}، پیش‌آموزش و تنظیم دقیق را نیز توضیح می‌دهد. حذف تصادفی، به معنی حذف ثابت یک زیرشبکه در زمان استفاده نیست. در رگرسیون، خروجی نهایی می‌تواند خطی و نامحدود باشد؛ در طبقه‌بندی باید خروجی و زیان با معنای برچسب سازگار باشند.
+
+\section{معرفی خانواده‌های عمیق و مرز دامنهٔ درس}
+در معرفی اسلاید، CNN از الگوهای محلی، کانولوشن و اشتراک وزن استفاده می‌کند؛ هر کانولوشن الزاماً اندازهٔ فضایی را کم نمی‌کند. مدل زبانی پیش‌آموخته از متن فراوان نمایش می‌آموزد و می‌تواند برای وظیفه‌ای خاص تنظیم شود. مدل مولد، خروجی تازه مانند متن یا تصویر تولید می‌کند. آموزش روی دستور و پاسخ، شکل استفاده از مدل را تغییر می‌دهد. یادگیری درون‌بافت از نمونه‌های موجود در ورودی با تنظیم دقیق که وزن‌ها را تغییر می‌دهد متفاوت است.
+
+نام‌های BERT ، T5 و خانواده‌های مولد در اسلاید مثال‌اند؛ این معرفی، رتبه‌بندی روزِ محصولات یا آموزش تفصیلی معماری Transformer نیست. برای این درس، مهم است بتوانید نوع ورودی، نوع خروجی، تابع زیان و نقش پیش‌آموزش را توضیح دهید و تشخیص دهید کدام پارامتر از داده آموخته و کدام تنظیم پیش از آموزش انتخاب می‌شود.
+\section{یک گام واقعی پس‌انتشار، با عدد و مشتق}
+برای روشن شدن تفاوت «محاسبهٔ گرادیان» و «به‌روزرسانی»، یک شبکه با ورودی $x=1$، وزن پنهان $w=0.5$، بایاس پنهان صفر، وزن خروجی $v=2$ و بایاس خروجی $b=-1$ در نظر بگیرید. هر دو فعال‌ساز سیگمویدند و پاسخ مطلوب $y=1$ است. گذر رو به جلو:
+\begin{align*}
+z_h&=wx=0.5,& h&=\sigma(z_h)\approx0.622459,\\
+z_o&=vh+b\approx0.244919,& a&=\sigma(z_o)\approx0.560925.
+\end{align*}
+با آنتروپی متقاطع، خطای خروجی و گرادیان‌ها به کمک قاعدهٔ زنجیره‌ای به دست می‌آیند:
+\begin{align*}
+\delta_o&=a-y\approx-0.439075,\\
+\frac{\partial L}{\partial v}&=\delta_o h\approx-0.273306,\\
+\frac{\partial L}{\partial w}&=\delta_o v h(1-h)x\approx-0.206368.
+\end{align*}
+برای نرخ یادگیری $0.1$، وزن‌ها به $v\approx2.027331$ و $w\approx0.520637$ می‌رسند. گرادیان بایاس خروجی $\delta_o$ و گرادیان بایاس پنهان $\delta_o v h(1-h)$ است. همهٔ این گرادیان‌ها با وزن‌های پیش از به‌روزرسانی محاسبه می‌شوند؛ استفاده از $v$ تازه هنگام محاسبهٔ گرادیان $w$، همان گام گرادیان‌کاهشی نیست. این مثال تک‌نمونه‌ای است؛ برای دسته، گرادیان نمونه‌ها با قرارداد جمع یا میانگین ترکیب می‌شود.
+
+\subsection*{تعبیر ملموس ترفند هسته}
+برای بردار دوبعدی، تبدیل $\phi(x)=(x_1^2,\sqrt2x_1x_2,x_2^2)$ را در نظر بگیرید. ضرب داخلی دو بردار تبدیل‌شده برابر $(x^\mathsf Tz)^2$ است. مثلاً برای $x=(1,2)$ و $z=(3,4)$ داریم:
+\[K(x,z)=11^2=121=1\times9+(2\sqrt2)(12\sqrt2)+4\times16.\]
+پس هسته راه محاسبهٔ شباهتِ فضای تبدیل‌شده است؛ خودش الگوریتم انتخاب مرز یا یک احتمال نیست. غیرخطی شدن مرز در فضای اولیه با خطی بودن آن در فضای ویژگی سازگار است.
+
+\section{خودآزمایی و تمرین}
+\begin{selftests}
+\begin{selftest}{شواهد گمشده و صفر را یکسان نگیرید}
+در بیز ساده، اگر همهٔ ویژگی‌ها نامعلوم باشند چه می‌ماند؟ اگر یک مقدار مشاهده‌شده در یک طبقه شمارش صفر داشته باشد چه می‌شود؟
+\answer{با حذف عامل ویژگی‌های نامعلوم، فقط پیشین طبقه‌ها باقی می‌ماند. شمارش صفرِ یک مقدار مشاهده‌شده، بدون هموارسازی امتیاز آن طبقه را صفر می‌کند. نامعلوم بودن با مشاهدهٔ یک رخداد با احتمال تخمینی صفر تفاوت دارد.}
+\end{selftest}
+\begin{selftest}{هموارسازی معتبر بسازید}
+در طبقه‌ای با ۱۰ نمونه، ویژگی سه‌حالته شمارش‌های $0,4,6$ دارد. احتمال‌ها با لاپلاس چیست؟
+\answer{احتمال‌ها $1/13,5/13,7/13$ می‌شوند و جمعشان یک است. افزودن یک فقط به خانهٔ صفر و نگه داشتن مخرج ۱۰، توزیع معتبر نمی‌سازد.}
+\end{selftest}
+\begin{selftest}{نقض حاشیه با خطا فرق دارد؟}
+برای یک نقطهٔ مثبت با امتیاز $f(x)=0.4$، زیان لولایی و صحت برچسب چیست؟
+\answer{زیان $\max(0,1-0.4)=0.6$ است، اما امتیاز مثبت است و برچسب درست می‌ماند. نقطه داخل حاشیه است. در قرارداد این فصل، $C$ بزرگ‌تر این نقض را پرهزینه‌تر می‌کند.}
+\end{selftest}
+\begin{selftest}{چرا ده لایهٔ خطی XOR را حل نمی‌کند؟}
+ترکیب $W_2(W_1x+b_1)+b_2$ چه نوع تابعی است؟
+\answer{برابر $(W_2W_1)x+(W_2b_1+b_2)$، یعنی دوباره آفین است. بدون فعال‌ساز غیرخطی، تعداد لایه‌ها به‌تنهایی ظرفیت ساخت مرز XOR را ایجاد نمی‌کند.}
+\end{selftest}
+\begin{selftest}{پس‌انتشار دقیقاً چه کاری می‌کند؟}
+آیا پس‌انتشار نرخ یادگیری را انتخاب می‌کند؟ در مثال عددی این فصل، چرا هنگام محاسبهٔ گرادیان پنهان از وزن خروجی تازه استفاده نمی‌کنیم؟
+\answer{پس‌انتشار گرادیان را با قاعدهٔ زنجیره‌ای محاسبه می‌کند؛ بهینه‌ساز و نرخ یادگیری، گام بعد را تعیین می‌کنند. همهٔ مؤلفه‌های گرادیان یک گام باید در یک نقطهٔ مشترک از فضای پارامترها محاسبه شوند.}
+\end{selftest}
+\begin{selftest}{هر امتیاز عددی احتمال نیست}
+آیا امتیاز SVM یا حاصل‌ضرب خام بیز را می‌توان مستقیم احتمال دانست؟
+\answer{امتیاز SVM به‌خودی‌خود احتمال کالیبره نیست. حاصل‌ضرب بیز نیز باید با جمع امتیاز تمام طبقه‌ها نرمال شود؛ حتی پس از نرمال‌سازی، کیفیت کالیبراسیون به فرض‌های مدل و داده بستگی دارد.}
+\end{selftest}
+\end{selftests}
+
+% !TeX root = ../main.tex
+
+\end{document}

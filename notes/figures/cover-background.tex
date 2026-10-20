@@ -1,0 +1,6 @@
+% !TeX root = ../main.tex
+\begin{tikzpicture}[remember picture,overlay]
+\fill[navy] (current page.north west) rectangle ([yshift=-90mm]current page.north east);
+\fill[gold] ([yshift=-90mm]current page.north west) rectangle ([yshift=-92mm]current page.north east);
+\draw[teal!22,line width=.5pt] ([xshift=23mm,yshift=32mm]current page.south west)--([xshift=-23mm,yshift=32mm]current page.south east);
+\end{tikzpicture}%

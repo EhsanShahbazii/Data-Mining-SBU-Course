@@ -1,0 +1,15 @@
+{
+  "name": "data-mining-interactive-textbook",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "python3 tools/build_book.py",
+    "check": "node --check app.js && node --check labs.js && node --check algorithms.js && node --check motion.js && node --check resources.js",
+    "test": "node tools/verify.mjs",
+    "build:resources": "python3 tools/build_resources.py"
+  },
+  "dependencies": {
+    "katex": "0.16.22"
+  }
+}

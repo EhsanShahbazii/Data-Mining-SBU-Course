@@ -1,0 +1,123 @@
+% !TeX program = xelatex
+\documentclass[12pt,a4paper,oneside]{report}
+% !TeX root = ../main.tex
+\XeTeXgenerateactualtext=1
+\usepackage[margin=23mm,top=24mm,bottom=24mm,headheight=27pt]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,array,longtable,tabularx}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,patterns}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec,needspace}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{xepersian}
+
+% !TeX root = ../main.tex
+\settextfont[Scale=1.06,BoldFont=Amiri-Bold.ttf]{Amiri-Regular.ttf}
+\setlatintextfont[BoldFont=texgyretermes-bold.otf,ItalicFont=texgyretermes-italic.otf,BoldItalicFont=texgyretermes-bolditalic.otf]{texgyretermes-regular.otf}
+
+% !TeX root = ../main.tex
+\definecolor{navy}{HTML}{163747}
+\definecolor{teal}{HTML}{127C80}
+\definecolor{gold}{HTML}{B18542}
+\definecolor{paper}{HTML}{F3F7F7}
+\definecolor{muted}{HTML}{5E7178}
+\definecolor{alert}{HTML}{A45538}
+
+% مشخصات جزوه؛ عنوان و نام‌ها فقط در این فایل تغییر می‌کنند.
+\newcommand{\BookTitle}{داده‌کاوی}
+\newcommand{\BookSubtitle}{از دادهٔ خام تا الگو و مدل قابل اعتماد}
+\newcommand{\CourseInstructor}{دکتر شیرین شعاعی}
+\newcommand{\BookCompilers}{احسان شهبازی}
+
+\hypersetup{unicode=true,colorlinks=true,linkcolor=navy,urlcolor=teal,
+ pdftitle={داده‌کاوی ـ کتاب آموزشی و تعاملی},pdfauthor={احسان شهبازی},pdfsubject={پیش‌پردازش، طبقه‌بندی، رگرسیون، خوشه‌بندی و تحلیل وابستگی}}
+
+% !TeX root = ../main.tex
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\linespread{1.12}
+\raggedbottom
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+\allowdisplaybreaks[2]
+\emergencystretch=2em
+% Page styles use explicit boxes to keep bidi direction groups balanced.
+\makeatletter
+\def\ps@lecture{%
+  \def\@oddhead{\vbox{\hbox to\textwidth{\small
+    \rl{\BookTitle}\hfil\rl{\leftmark}}%
+    \kern4pt\hrule height .35pt}}%
+  \let\@evenhead\@oddhead
+  \def\@oddfoot{\hfil\thepage\hfil}%
+  \let\@evenfoot\@oddfoot}
+\makeatother
+\pagestyle{lecture}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\titleformat{\chapter}[display]{\color{navy}\bfseries\Huge}{\large فصل \thechapter}{8pt}{}[\vspace{4pt}\color{gold}\titlerule]
+\titlespacing*{\chapter}{0pt}{0pt}{18pt}
+\titleformat{\section}[block]{\Large\bfseries\color{navy}}{\thesection}{.6em}{}
+\titleformat{\subsection}[block]{\large\bfseries\color{teal}}{\thesubsection}{.6em}{}
+
+% !TeX root = ../main.tex
+\tcbset{enhanced,breakable,boxrule=.45pt,arc=1.5mm,
+ left=3mm,right=3mm,top=2mm,bottom=2mm,before skip=9pt,after skip=9pt,
+ fonttitle=\bfseries,coltitle=white,colback=paper,colframe=teal}
+\newtcolorbox{definition}[1]{breakable=false,title={تعریف | #1},colframe=navy,colback=navy!3!white}
+\newtcolorbox{result}[1]{breakable=false,title={نتیجهٔ کلیدی | #1},colframe=teal,colback=teal!4!white}
+\newtcolorbox{important}[1]{breakable=false,title={دقت کنید | #1},colframe=gold,colback=gold!6!white}
+\newcounter{ex}[chapter]
+\newenvironment{example}[1]{\refstepcounter{ex}\begin{tcolorbox}[breakable=false,title={مثال \thechapter.\arabic{ex} | #1},colframe=muted,colback=white]}{\end{tcolorbox}}
+
+% Structured exercises: the web builder turns answers into closed disclosures.
+\newenvironment{selftests}{\begin{enumerate}\setlength{\itemsep}{9pt}}{\end{enumerate}}
+\newenvironment{selftest}[1]{\item\textbf{#1}\par}{\par}
+\newcommand{\answer}[1]{\par{\color{teal}\bfseries پاسخ و توضیح: }#1\par}
+
+% !TeX root = ../main.tex
+\newcommand{\edit}[1]{\par\begingroup\small\color{alert}\textbf{تکمیل یا اصلاح علمی.} #1\par\endgroup}
+\newcommand{\source}[1]{\par{\small\color{muted} منبع مطالعه: #1}\par}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\MSE}{\operatorname{MSE}}
+\newcommand{\Bias}{\operatorname{Bias}}
+\newcommand{\SE}{\operatorname{SE}}
+\newcommand{\iid}{\overset{\mathrm{iid}}{\sim}}
+\newcommand{\N}{\mathcal N}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\sol}{\par\textbf{حل.} }
+\newcommand{\figcap}[1]{\par\smallskip{\small\color{muted}#1}\par}
+
+\newcommand{\labref}[1]{\par\smallskip{\small\color{teal}\textbf{آزمایشگاه پیشنهادی.} #1}\par}
+\newcommand{\checkanswer}[1]{\par\textbf{پاسخ کوتاه.} #1\par}
+
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\passthrough}[1]{#1}
+
+
+
+\hypersetup{pdftitle={راهنمای مطالعه},pdfauthor={دکتر شیرین شعاعی؛ احسان شهبازی}}
+\begin{document}
+\setcounter{chapter}{0}
+\chapter*{راهنمای مطالعه}
+\begin{center}{\small\color{muted} استاد درس: دکتر شیرین شعاعی\\[2mm] گردآورنده جزوه: احسان شهبازی}\end{center}
+
+\addcontentsline{toc}{chapter}{راهنمای مطالعه}
+این کتاب آموزشی، محتوای علمی هفت مجموعه اسلاید درس داده‌کاوی را به فارسی توضیح می‌دهد و مباحث را با بخش‌های مرتبط از ویرایش دوم کتاب \lr{Introduction to Data Mining} بسط می‌دهد. ترتیب فصل‌ها از ترتیب اسلایدهای ارسالی پیروی می‌کند؛ هدف، پیوند شهود، فرمول، محاسبه و کاربرد است.
+
+در هر مبحث ابتدا مسئله و زبان آن معرفی می‌شود، سپس سازوکار روش، فرض‌ها و محدودیت‌ها و مثال عددی می‌آید. پرسش‌های خودآزمایی با پاسخ کوتاه برای سنجش فهم‌اند. در سایت، آزمایشگاه‌ها کنار بخش مرتبط و همچنین در صفحهٔ مستقل آزمایشگاه در دسترس‌اند. محاسبات شبیه‌سازی‌ها آموزشی و قابل تکرارند.
+
+\begin{important}{قراردادهای مطالعه}
+$X\in\mathbb R^{n\times d}$ ماتریس داده با $n$ مشاهده و $d$ ویژگی است؛ $\mathbf x_i$ یک مشاهده و $y_i$ برچسب یا پاسخ آن است. دادهٔ آموزش برای برازش، اعتبارسنجی برای انتخاب تنظیمات و آزمون برای ارزیابی نهایی است. همهٔ پارامترهای پیش‌پردازش نیز فقط روی آموزش برازش می‌شوند. اعداد و مثال‌های افزوده، مثال آموزشی این جزوه‌اند مگر آنکه صریحاً به مثال اسلاید یا کتاب اشاره شود.
+\end{important}
+
+منابع هر فصل با شمارهٔ صفحهٔ PDF مشخص شده‌اند؛ شمارهٔ چاپی کتاب نیز جداگانه ذکر می‌شود. در نسخهٔ کتاب ارسالی، صفحهٔ PDF معمولاً یک واحد بیشتر از شمارهٔ چاپی است. اطلاعات اداری اسلایدهای مقدماتی، مانند برنامهٔ جلسات و ایمیل افراد، در متن علمی تکرار نشده‌اند. مباحث خارج از دامنهٔ اسلایدها به‌عنوان فصل تازه به درس نسبت داده نمی‌شوند.
+
+برای شروع، فصل اول را برای صورت‌بندی مسئله بخوانید و پیش از مدل‌سازی فصل دوم را انجام دهید. فصل سوم زبان مشترک آموزش و ارزیابی است؛ بدون آن، مقایسهٔ مدل‌های فصل‌های بعد معنای قابل اعتمادی ندارد. فصل‌های ششم و هفتم نیز به دادهٔ آزمون و اعتبار الگو حساس‌اند، هرچند الزاماً برچسب هدف ندارند.
+
+
+\end{document}

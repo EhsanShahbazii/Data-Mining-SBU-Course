@@ -1,0 +1,14 @@
+% !TeX root = ../main.tex
+\tcbset{enhanced,breakable,boxrule=.45pt,arc=1.5mm,
+ left=3mm,right=3mm,top=2mm,bottom=2mm,before skip=9pt,after skip=9pt,
+ fonttitle=\bfseries,coltitle=white,colback=paper,colframe=teal}
+\newtcolorbox{definition}[1]{breakable=false,title={تعریف | #1},colframe=navy,colback=navy!3!white}
+\newtcolorbox{result}[1]{breakable=false,title={نتیجهٔ کلیدی | #1},colframe=teal,colback=teal!4!white}
+\newtcolorbox{important}[1]{breakable=false,title={دقت کنید | #1},colframe=gold,colback=gold!6!white}
+\newcounter{ex}[chapter]
+\newenvironment{example}[1]{\refstepcounter{ex}\begin{tcolorbox}[breakable=false,title={مثال \thechapter.\arabic{ex} | #1},colframe=muted,colback=white]}{\end{tcolorbox}}
+
+% Structured exercises: the web builder turns answers into closed disclosures.
+\newenvironment{selftests}{\begin{enumerate}\setlength{\itemsep}{9pt}}{\end{enumerate}}
+\newenvironment{selftest}[1]{\item\textbf{#1}\par}{\par}
+\newcommand{\answer}[1]{\par{\color{teal}\bfseries پاسخ و توضیح: }#1\par}

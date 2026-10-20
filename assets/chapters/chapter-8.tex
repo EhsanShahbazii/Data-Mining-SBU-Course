@@ -1,0 +1,157 @@
+% !TeX program = xelatex
+\documentclass[12pt,a4paper,oneside]{report}
+% !TeX root = ../main.tex
+\XeTeXgenerateactualtext=1
+\usepackage[margin=23mm,top=24mm,bottom=24mm,headheight=27pt]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,array,longtable,tabularx}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,patterns}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec,needspace}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{xepersian}
+
+% !TeX root = ../main.tex
+\settextfont[Scale=1.06,BoldFont=Amiri-Bold.ttf]{Amiri-Regular.ttf}
+\setlatintextfont[BoldFont=texgyretermes-bold.otf,ItalicFont=texgyretermes-italic.otf,BoldItalicFont=texgyretermes-bolditalic.otf]{texgyretermes-regular.otf}
+
+% !TeX root = ../main.tex
+\definecolor{navy}{HTML}{163747}
+\definecolor{teal}{HTML}{127C80}
+\definecolor{gold}{HTML}{B18542}
+\definecolor{paper}{HTML}{F3F7F7}
+\definecolor{muted}{HTML}{5E7178}
+\definecolor{alert}{HTML}{A45538}
+
+% مشخصات جزوه؛ عنوان و نام‌ها فقط در این فایل تغییر می‌کنند.
+\newcommand{\BookTitle}{داده‌کاوی}
+\newcommand{\BookSubtitle}{از دادهٔ خام تا الگو و مدل قابل اعتماد}
+\newcommand{\CourseInstructor}{دکتر شیرین شعاعی}
+\newcommand{\BookCompilers}{احسان شهبازی}
+
+\hypersetup{unicode=true,colorlinks=true,linkcolor=navy,urlcolor=teal,
+ pdftitle={داده‌کاوی ـ کتاب آموزشی و تعاملی},pdfauthor={احسان شهبازی},pdfsubject={پیش‌پردازش، طبقه‌بندی، رگرسیون، خوشه‌بندی و تحلیل وابستگی}}
+
+% !TeX root = ../main.tex
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\linespread{1.12}
+\raggedbottom
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+\allowdisplaybreaks[2]
+\emergencystretch=2em
+% Page styles use explicit boxes to keep bidi direction groups balanced.
+\makeatletter
+\def\ps@lecture{%
+  \def\@oddhead{\vbox{\hbox to\textwidth{\small
+    \rl{\BookTitle}\hfil\rl{\leftmark}}%
+    \kern4pt\hrule height .35pt}}%
+  \let\@evenhead\@oddhead
+  \def\@oddfoot{\hfil\thepage\hfil}%
+  \let\@evenfoot\@oddfoot}
+\makeatother
+\pagestyle{lecture}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\titleformat{\chapter}[display]{\color{navy}\bfseries\Huge}{\large فصل \thechapter}{8pt}{}[\vspace{4pt}\color{gold}\titlerule]
+\titlespacing*{\chapter}{0pt}{0pt}{18pt}
+\titleformat{\section}[block]{\Large\bfseries\color{navy}}{\thesection}{.6em}{}
+\titleformat{\subsection}[block]{\large\bfseries\color{teal}}{\thesubsection}{.6em}{}
+
+% !TeX root = ../main.tex
+\tcbset{enhanced,breakable,boxrule=.45pt,arc=1.5mm,
+ left=3mm,right=3mm,top=2mm,bottom=2mm,before skip=9pt,after skip=9pt,
+ fonttitle=\bfseries,coltitle=white,colback=paper,colframe=teal}
+\newtcolorbox{definition}[1]{breakable=false,title={تعریف | #1},colframe=navy,colback=navy!3!white}
+\newtcolorbox{result}[1]{breakable=false,title={نتیجهٔ کلیدی | #1},colframe=teal,colback=teal!4!white}
+\newtcolorbox{important}[1]{breakable=false,title={دقت کنید | #1},colframe=gold,colback=gold!6!white}
+\newcounter{ex}[chapter]
+\newenvironment{example}[1]{\refstepcounter{ex}\begin{tcolorbox}[breakable=false,title={مثال \thechapter.\arabic{ex} | #1},colframe=muted,colback=white]}{\end{tcolorbox}}
+
+% Structured exercises: the web builder turns answers into closed disclosures.
+\newenvironment{selftests}{\begin{enumerate}\setlength{\itemsep}{9pt}}{\end{enumerate}}
+\newenvironment{selftest}[1]{\item\textbf{#1}\par}{\par}
+\newcommand{\answer}[1]{\par{\color{teal}\bfseries پاسخ و توضیح: }#1\par}
+
+% !TeX root = ../main.tex
+\newcommand{\edit}[1]{\par\begingroup\small\color{alert}\textbf{تکمیل یا اصلاح علمی.} #1\par\endgroup}
+\newcommand{\source}[1]{\par{\small\color{muted} منبع مطالعه: #1}\par}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\MSE}{\operatorname{MSE}}
+\newcommand{\Bias}{\operatorname{Bias}}
+\newcommand{\SE}{\operatorname{SE}}
+\newcommand{\iid}{\overset{\mathrm{iid}}{\sim}}
+\newcommand{\N}{\mathcal N}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\sol}{\par\textbf{حل.} }
+\newcommand{\figcap}[1]{\par\smallskip{\small\color{muted}#1}\par}
+
+\newcommand{\labref}[1]{\par\smallskip{\small\color{teal}\textbf{آزمایشگاه پیشنهادی.} #1}\par}
+\newcommand{\checkanswer}[1]{\par\textbf{پاسخ کوتاه.} #1\par}
+
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\passthrough}[1]{#1}
+
+
+
+\hypersetup{pdftitle={واژه‌نامه، نقشهٔ منابع و مسیر تمرین},pdfauthor={دکتر شیرین شعاعی؛ احسان شهبازی}}
+\begin{document}
+\appendix
+\chapter{واژه‌نامه، نقشهٔ منابع و مسیر تمرین}
+\begin{center}{\small\color{muted} استاد درس: دکتر شیرین شعاعی\\[2mm] گردآورنده جزوه: احسان شهبازی}\end{center}
+
+\section{واژه‌نامهٔ کلیدی}
+\begin{longtable}{p{41mm}p{100mm}}
+\toprule
+اصطلاح & معنی و تمایز اصلی\\\midrule\endhead
+\lr{Feature / Target} & ویژگیِ قابل استفاده برای پیش‌بینی، در برابر پاسخ مورد پیش‌بینی.\\
+\lr{Parameter / Hyperparameter} & پارامتر از داده برازش می‌شود؛ ابرپارامتر شیوهٔ آموزش یا ظرفیت را تعیین می‌کند.\\
+\lr{Training / Validation / Test} & برازش، انتخاب تنظیم و ارزیابی مستقل سه نقش جدا هستند.\\
+\lr{Leakage} & ورود اطلاعاتی به آموزش که هنگام استفادهٔ واقعی یا ارزیابی مستقل مجاز نیست.\\
+\lr{Accuracy / Precision} & سهم کل پیش‌بینی‌های درست، در برابر سهم هشدارهای مثبتِ درست.\\
+\lr{Recall / Specificity} & سهم مثبت‌های کشف‌شده، در برابر سهم منفی‌های درست تشخیص‌داده‌شده.\\
+\lr{Bias / Variance} & خطای نظام‌مند میانگین مدل‌ها، در برابر حساسیت مدل به نمونهٔ آموزش.\\
+\lr{Centroid / Medoid} & میانگین خوشه، در برابر یک عضو واقعی با کمترین مجموع ناهمانندی.\\
+\lr{Support / Confidence / Lift} & فراوانی اجتماع، احتمال شرطی تجربی و نسبت همراهی به استقلال.\\
+\lr{Correlation / Causation} & همراهی آماری، در برابر اثر تغییر با مداخله؛ اولی دومی را اثبات نمی‌کند.\\
+\bottomrule
+\end{longtable}
+
+\section{تطبیق فصل‌ها با منابع}
+مبنای ترتیب، هفت فایل \lr{IE500 Data Mining} ارسالی از گروه داده و وب دانشگاه مانهایم است. منبع کتاب، ویرایش دوم جهانیِ \lr{Introduction to Data Mining} اثر \lr{Pang-Ning Tan, Michael Steinbach, Anuj Karpatne, Vipin Kumar} است. شماره‌های زیر شمارهٔ صفحه در PDF اسلاید و شمارهٔ چاپی کتاب‌اند؛ در فایل کتاب، صفحهٔ PDF یک واحد بیشتر است.
+\begin{longtable}{p{20mm}p{51mm}p{70mm}}
+\toprule
+فصل & اسلاید & بسط کتاب\\\midrule\endhead
+۱ & مقدمه، ۱۹–۵۸؛ ۱–۱۸ اداری & فصل ۱، ۲۴–۳۳؛ بخش ۶٫۳، ۴۱۰–۴۱۳\\
+۲ & پیش‌پردازش، ۳–۵۹ & فصل ۲، ۴۶–۱۱۹؛ بخش ۶٫۱۱\\
+۳ & طبقه‌بندی ۱، ۳–۶۰؛ طبقه‌بندی ۲، ۴۲–۶۱ & فصل ۳، ۱۳۴–۱۹۳؛ بخش ۶٫۱۰، ۴۹۸–۵۱۴؛ ۶٫۱۱، ۵۱۵–۵۳۱\\
+۴ & طبقه‌بندی ۲، ۳–۴۱ & بیز: ۴۱۴–۴۲۸؛ شبکه: ۴۵۱–۴۷۷؛ SVM: ۴۷۸–۴۹۷\\
+۵ & رگرسیون، ۳–۵۵ & تعمیم: ۱۶۷–۱۹۳؛ اریبی–واریانس: ۵۰۲–۵۰۴. رگرسیون تفصیلی از اسلاید و بسط ریاضی است.\\
+۶ & خوشه‌بندی، ۳–۶۴ & فصل ۵، ۳۰۷–۳۷۸؛ ناهنجاری فصل ۹، ۷۲۳–۷۵۱؛ فاصله بخش ۲٫۴\\
+۷ & وابستگی، ۳–۴۶ & فصل ۴، ۲۱۳–۲۷۴؛ گسسته‌سازی و اقلام اسمی بخش‌های ۷٫۱–۷٫۲\\
+\bottomrule
+\end{longtable}
+صفحات عنوان، پرسش پایانی و فهرست منابع، جزو مطالب علمی تازه شمرده نشده‌اند. سخنرانی‌های آنلاینِ ارجاع‌شده که فایلشان ارائه نشده، مطالعه‌شده یا به‌طور کامل بازسازی‌شده تلقی نشده‌اند. خوشه‌بندی سلسله‌مراتبی با اتکا به کتاب بسط داده شده، زیرا اسلاید آن را صریحاً به منبع مکمل ارجاع می‌دهد. FP-growth و مجموعه‌های بسته نیز بسط مرتبط کتاب‌اند، نه ادعای تدریس مستقیم در اسلاید.
+
+\section{مسیر پیشنهادی تمرین و پروژه}
+\begin{enumerate}
+\item یک مجموعهٔ داده و واحد مشاهده را تعریف کنید. پرسش هدف، زمان پیش‌بینی و معیار موفقیت را پیش از مدل‌سازی بنویسید.
+\item یک تقسیم مستقل و متناسب با زمان یا گروه بسازید. پیش‌پردازش را فقط با آموزش بیاموزید و یک خط مبنای ساده بسازید.
+\item برای طبقه‌بندی، حداقل یک مدل درختی، همسایه یا بیز را با معیارهای چندگانه و هزینهٔ خطا بررسی کنید. آستانه را روی اعتبارسنجی انتخاب کنید.
+\item برای پاسخ عددی، خط پایه، رگرسیون خطی و یک مدل انعطاف‌پذیر را با MAE و RMSE مقایسه کنید؛ منطقهٔ برون‌یابی را مشخص کنید.
+\item برای خوشه‌بندی، دو تعریف متفاوت خوشه، دو مقیاس‌بندی و بیش از یک شروع اولیه را بررسی کنید. خوشه‌ها را فقط با زیبایی نمودار قضاوت نکنید.
+\item برای قواعد، شمارش، پشتیبانی، اطمینان و نرخ پایه را هم‌زمان گزارش کنید. رابطهٔ جالب را روی دادهٔ مستقل یا با تحلیل پایداری بررسی کنید.
+\item تنظیمات، بذر تصادفی، شناسهٔ تقسیم‌ها و نسخهٔ داده را ثبت کنید. هیچ انتخابی را بر اساس آزمون نهایی انجام ندهید.
+\end{enumerate}
+
+\section{چک‌لیست فهم مفهومی}
+اگر برای هر روش بتوانید «ورودی چیست؟ خروجی چیست؟ چه چیزی بهینه می‌شود؟ چه فرضی لازم است؟ چه تنظیمی دارد؟ چگونه ارزیابی می‌شود؟ در چه داده‌ای شکست می‌خورد؟» را پاسخ دهید، از حفظ نام الگوریتم فراتر رفته‌اید. فرمول را همراه با واحد، دامنه، حالت مخرج صفر و قرارداد مقیاس توضیح دهید. در آزمایشگاه، پیش از حرکت کنترل‌ها نتیجه را حدس بزنید و پس از مشاهده، تفاوت را با فرض‌های مدل تفسیر کنید.
+
+
+\end{document}

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "chapter-0",
+    "title": "راهنمای مطالعه",
+    "pages": 1,
+    "pdf": "assets/chapters/chapter-0.pdf",
+    "tex": "assets/chapters/chapter-0.tex",
+    "pdfBytes": 49311
+  },
+  {
+    "id": "chapter-1",
+    "title": "داده‌کاوی؛ از مسئله تا کشف الگو",
+    "pages": 6,
+    "pdf": "assets/chapters/chapter-1.pdf",
+    "tex": "assets/chapters/chapter-1.tex",
+    "pdfBytes": 118723
+  },
+  {
+    "id": "chapter-2",
+    "title": "پیش‌پردازش؛ ساختن نمایش درست از داده",
+    "pages": 9,
+    "pdf": "assets/chapters/chapter-2.pdf",
+    "tex": "assets/chapters/chapter-2.tex",
+    "pdfBytes": 154749
+  },
+  {
+    "id": "chapter-3",
+    "title": "طبقه‌بندی؛ درخت، تجمیع و ارزیابی",
+    "pages": 10,
+    "pdf": "assets/chapters/chapter-3.pdf",
+    "tex": "assets/chapters/chapter-3.tex",
+    "pdfBytes": 160195
+  },
+  {
+    "id": "chapter-4",
+    "title": "بیز، حاشیه و شبکه‌های عصبی",
+    "pages": 7,
+    "pdf": "assets/chapters/chapter-4.pdf",
+    "tex": "assets/chapters/chapter-4.tex",
+    "pdfBytes": 131025
+  },
+  {
+    "id": "chapter-5",
+    "title": "رگرسیون؛ پیش‌بینی پاسخ عددی",
+    "pages": 7,
+    "pdf": "assets/chapters/chapter-5.pdf",
+    "tex": "assets/chapters/chapter-5.tex",
+    "pdfBytes": 137639
+  },
+  {
+    "id": "chapter-6",
+    "title": "خوشه‌بندی و کشف ناهنجاری",
+    "pages": 7,
+    "pdf": "assets/chapters/chapter-6.pdf",
+    "tex": "assets/chapters/chapter-6.tex",
+    "pdfBytes": 138072
+  },
+  {
+    "id": "chapter-7",
+    "title": "تحلیل وابستگی و کشف زیرگروه",
+    "pages": 10,
+    "pdf": "assets/chapters/chapter-7.pdf",
+    "tex": "assets/chapters/chapter-7.tex",
+    "pdfBytes": 150981
+  },
+  {
+    "id": "chapter-8",
+    "title": "واژه‌نامه، نقشهٔ منابع و مسیر تمرین",
+    "pages": 3,
+    "pdf": "assets/chapters/chapter-8.pdf",
+    "tex": "assets/chapters/chapter-8.tex",
+    "pdfBytes": 64834
+  }
+]
